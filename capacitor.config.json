@@ -1,0 +1,6 @@
+{
+  "appId": "com.badahe.app",
+  "appName": "تمرین بداهه‌گویی",
+  "webDir": "www",
+  "android": { "webContentsDebuggingEnabled": true }
+}

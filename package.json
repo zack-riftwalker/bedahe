@@ -1,0 +1,17 @@
+{
+  "name": "badahe",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "sync": "cap sync android",
+    "test": "node test/check.js"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.6.2",
+    "@capacitor/core": "^8.6.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.6.2",
+    "vazirmatn": "^33.0.3"
+  }
+}

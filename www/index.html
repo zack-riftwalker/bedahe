@@ -1,0 +1,979 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>تمرین بداهه‌گویی</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>@font-face{font-family:"Vazirmatn";src:url(fonts/Vazirmatn.woff2) format("woff2");font-weight:400 900;font-display:swap}</style>
+<style>
+/* Layout: phone-first app shell — large-title screens, grouped glass lists, bottom-sheet tasks, a full-screen focus stage, floating glass tab bar. */
+:root{
+  --bg:#e7ebf3; --b1:rgba(84,136,255,.55); --b2:rgba(36,186,166,.45); --b3:rgba(255,152,84,.45);
+  --glass:rgba(255,255,255,.50); --glass-2:rgba(255,255,255,.78); --stroke:rgba(255,255,255,.78); --hi:rgba(255,255,255,.95); --shadow:rgba(28,36,72,.12);
+  --hair:rgba(16,20,36,.09); --soft:rgba(15,18,32,.06); --ink:#0f1220; --muted:#5a6179;
+  --think:#d98a00; --air:#f0393c; --ok:#14a06a; --link:#2c63f2;
+  --accent:#0f1220; --on-accent:#ffffff; --scrim:rgba(8,12,28,.28);
+  --f:"Vazirmatn",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif; --r:26px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#05060c; --b1:rgba(56,96,230,.42); --b2:rgba(18,150,140,.32); --b3:rgba(214,108,46,.28);
+  --glass:rgba(28,30,46,.46); --glass-2:rgba(30,32,50,.86); --stroke:rgba(255,255,255,.10); --hi:rgba(255,255,255,.12); --shadow:rgba(0,0,0,.45);
+  --hair:rgba(255,255,255,.09); --soft:rgba(255,255,255,.07); --ink:#f2f4fb; --muted:#9ca3bb;
+  --think:#ffb53d; --air:#ff6266; --ok:#3ddc97; --link:#8fb0ff;
+  --accent:#f2f4fb; --on-accent:#0a0b13; --scrim:rgba(0,0,0,.45); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#05060c; --b1:rgba(56,96,230,.42); --b2:rgba(18,150,140,.32); --b3:rgba(214,108,46,.28);
+  --glass:rgba(28,30,46,.46); --glass-2:rgba(30,32,50,.86); --stroke:rgba(255,255,255,.10); --hi:rgba(255,255,255,.12); --shadow:rgba(0,0,0,.45);
+  --hair:rgba(255,255,255,.09); --soft:rgba(255,255,255,.07); --ink:#f2f4fb; --muted:#9ca3bb;
+  --think:#ffb53d; --air:#ff6266; --ok:#3ddc97; --link:#8fb0ff;
+  --accent:#f2f4fb; --on-accent:#0a0b13; --scrim:rgba(0,0,0,.45); color-scheme:dark}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+html{direction:rtl}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);font-size:15.5px;line-height:1.75;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+body.lock{overflow:hidden}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0;padding:0}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:12px}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{text-wrap:balance;line-height:1.3}
+svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+
+#bg{position:fixed;inset:0;z-index:-1;background:var(--bg);overflow:hidden}
+#bg i{position:absolute;border-radius:50%}
+#bg i:nth-child(1){width:75vmax;height:75vmax;top:-30vmax;right:-25vmax;background:radial-gradient(circle,var(--b1),transparent 66%)}
+#bg i:nth-child(2){width:65vmax;height:65vmax;bottom:-28vmax;left:-25vmax;background:radial-gradient(circle,var(--b2),transparent 66%)}
+#bg i:nth-child(3){width:50vmax;height:50vmax;top:28%;left:22%;background:radial-gradient(circle,var(--b3),transparent 66%)}
+
+.glass{background:var(--glass);-webkit-backdrop-filter:blur(26px) saturate(180%);backdrop-filter:blur(26px) saturate(180%);border:1px solid var(--stroke);box-shadow:inset 0 1px 0 var(--hi),0 10px 34px var(--shadow);border-radius:var(--r)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.glass{background:var(--glass-2)}}
+
+.wrap{max-width:680px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{padding-block:8px 132px}
+.view{display:flex;flex-direction:column;gap:16px}
+.top{padding:22px 6px 2px}
+.kicker{font-size:12.5px;font-weight:700;color:var(--muted)}
+.top h1{font-size:32px;font-weight:900;letter-spacing:-.01em}
+.sec-title{font-size:13px;font-weight:800;color:var(--muted);padding:6px 10px 0}
+.muted{color:var(--muted)}
+.small{font-size:13.5px}
+
+.btn{min-height:46px;padding:0 20px;border-radius:999px;border:1px solid var(--stroke);background:var(--glass);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);font-weight:700;font-size:15px;display:inline-flex;align-items:center;justify-content:center;gap:8px;box-shadow:inset 0 1px 0 var(--hi)}
+.btn:active{transform:scale(.98)}
+.btn.pri{background:var(--accent);color:var(--on-accent);border-color:transparent;box-shadow:0 6px 20px var(--shadow)}
+.btn.ghost{background:transparent;border-color:transparent;box-shadow:none;color:var(--muted)}
+.btn.sm{min-height:38px;padding:0 14px;font-size:14px}
+.btn:disabled{opacity:.4;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:var(--soft);font-size:13.5px;font-weight:500;white-space:nowrap}
+.chip b{font-weight:800}
+
+/* hero */
+.hero{padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px}
+.hero-top{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center}
+.big{font-size:68px;font-weight:900;line-height:.9;text-align:center;min-width:64px}
+.big small{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-top:6px}
+.hero h2{font-size:20px;font-weight:800}
+.eyebrow{font-size:12.5px;font-weight:700;color:var(--muted)}
+.pill-new{display:inline-block;font-size:11.5px;font-weight:800;padding:1px 10px;border-radius:999px;background:var(--air);color:#fff;margin-bottom:4px}
+.stepper{display:flex;flex-direction:column;gap:6px}
+.stepper button{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--soft)}
+.stepper button:disabled{opacity:.3}
+.rule{font-size:14px;color:var(--muted)}
+.track{display:grid;grid-template-columns:repeat(14,1fr);gap:4px}
+.track button{height:7px;border-radius:4px;background:var(--soft)}
+.track button.done{background:var(--ok)}
+.track button.cur{background:var(--ink)}
+
+/* primary CTA */
+.cta{display:grid;grid-template-columns:56px 1fr auto;gap:14px;align-items:center;width:100%;padding:14px 14px 14px 18px;text-align:right}
+.cta .play{width:56px;height:56px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;box-shadow:0 8px 22px var(--shadow)}
+.cta .play svg{fill:currentColor;stroke:none;width:22px;height:22px;transform:scaleX(-1)}
+.cta b{display:block;font-size:17px;font-weight:800}
+.cta small{font-size:13px;color:var(--muted)}
+.dots{display:flex;gap:5px}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--hair)}
+.dots i.on{background:var(--ok)}
+
+/* grouped list */
+.list{list-style:none;margin:0;padding:6px}
+.list li+li{border-top:1px solid var(--hair);margin-inline:12px}
+.list li+li .item{margin-inline:-12px}
+.item{display:grid;grid-template-columns:42px 1fr auto;gap:14px;align-items:center;width:100%;padding:12px;border-radius:20px;text-align:right}
+.item:hover{background:var(--soft)}
+.ic{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:var(--soft)}
+.item h3{font-size:16px;font-weight:800}
+.item p{font-size:13px;color:var(--muted);line-height:1.5}
+.meta{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--muted);white-space:nowrap}
+.check{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--hair);display:grid;place-items:center}
+.check.on{background:var(--ok);border-color:var(--ok);color:#fff}
+.check svg{width:14px;height:14px;stroke-width:3}
+
+/* tab bar */
+.tabbar{position:fixed;z-index:10;bottom:calc(12px + env(safe-area-inset-bottom,0px));left:0;right:0;margin:0 auto;width:min(430px,calc(100% - 32px - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px)));display:flex;gap:4px;padding:6px;border-radius:999px}
+.tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;padding:7px 2px 6px;border-radius:999px;color:var(--muted);font-size:11.5px;font-weight:700;text-decoration:none}
+.tabbar a[aria-current="page"]{background:var(--glass-2);color:var(--ink);box-shadow:inset 0 1px 0 var(--hi),0 2px 10px var(--shadow)}
+
+/* sheets */
+.scrim{position:fixed;inset:0;z-index:20;background:var(--scrim)}
+.sheet{position:fixed;z-index:21;left:0;right:0;bottom:0;margin:0 auto;max-width:620px;max-height:90dvh;overflow:auto;overscroll-behavior:contain;border-radius:30px 30px 0 0;background:var(--glass-2);-webkit-backdrop-filter:blur(36px) saturate(180%);backdrop-filter:blur(36px) saturate(180%);border:1px solid var(--stroke);box-shadow:inset 0 1px 0 var(--hi),0 -10px 40px var(--shadow);padding:8px max(20px,env(safe-area-inset-right,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:16px;animation:up .28s cubic-bezier(.2,.9,.25,1)}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+@media (min-width:720px){.sheet{bottom:auto;top:50%;translate:0 -50%;border-radius:30px;max-height:86dvh;width:calc(100% - 48px)}}
+.grab{width:40px;height:5px;border-radius:3px;background:var(--hair);margin:2px auto 0;flex:0 0 auto}
+.sh-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.sh-head h2{font-size:22px;font-weight:900}
+.x{width:36px;height:36px;border-radius:50%;background:var(--soft);display:grid;place-items:center}
+.x svg{width:18px;height:18px}
+.card{background:var(--soft);border-radius:20px;padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.card h3{font-size:15px;font-weight:800}
+.tick{display:flex;gap:12px;align-items:flex-start;cursor:pointer}
+.tick input{appearance:none;-webkit-appearance:none;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--hair);flex:0 0 auto;margin-top:2px;display:grid;place-items:center;background:var(--glass)}
+.tick input:checked{background:var(--ok);border-color:var(--ok)}
+.tick input:checked::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.word{font-size:34px;font-weight:900;text-align:center;padding:10px;border-radius:18px;background:var(--glass);line-height:1.3}
+.pair{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center}
+.pair .word{font-size:26px}
+.plus{font-weight:900;color:var(--muted)}
+.cd{font-weight:900;font-size:18px;min-width:56px}
+.seg{display:flex;gap:4px;padding:4px;border-radius:999px;background:var(--soft);overflow-x:auto;scrollbar-width:none}
+.seg::-webkit-scrollbar{display:none}
+.seg button{flex:0 0 auto;padding:6px 14px;border-radius:999px;font-size:13.5px;font-weight:700;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--glass-2);color:var(--ink);box-shadow:0 1px 6px var(--shadow)}
+ol.tw{margin:0;padding-right:20px;display:flex;flex-direction:column;gap:6px;font-size:16.5px;font-weight:500}
+.pairs{display:flex;flex-wrap:wrap;gap:8px}
+.pairs span{padding:6px 12px;border-radius:12px;background:var(--glass);font-weight:700}
+
+/* review */
+.fills{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.fill{border-radius:18px;background:var(--glass);border:1px solid var(--stroke);padding:12px 4px;display:flex;flex-direction:column;align-items:center;box-shadow:inset 0 1px 0 var(--hi)}
+.fill:active{transform:scale(.96)}
+.fill b{font-size:28px;font-weight:900;line-height:1.2}
+.fill span{font-size:12.5px;color:var(--muted);font-weight:700}
+.kpi{display:flex;align-items:baseline;gap:6px}
+.kpi b{font-size:30px;font-weight:900}
+label.f{display:flex;flex-direction:column;gap:6px;font-size:13.5px;font-weight:700;color:var(--muted)}
+input[type=text],input[type=number],textarea{width:100%;min-width:0;border-radius:14px;border:1px solid var(--hair);background:var(--glass);padding:11px 14px;font-weight:500;color:var(--ink)}
+textarea{min-height:90px;resize:vertical;direction:ltr;text-align:left;font-size:12px}
+.switch{display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:700}
+.switch input{appearance:none;-webkit-appearance:none;width:50px;height:30px;border-radius:999px;background:var(--hair);position:relative;flex:0 0 auto;transition:background .2s}
+.switch input::after{content:"";position:absolute;top:3px;right:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.25);transition:right .2s}
+.switch input:checked{background:var(--ok)}
+.switch input:checked::after{right:23px}
+.rchips{display:flex;flex-wrap:wrap;gap:8px}
+.rchips button{padding:6px 12px;border-radius:999px;background:var(--glass);border:1px solid var(--stroke);font-size:13px;font-weight:700}
+.rchips button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.done-box{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:8px 0}
+.done-box .ok{width:64px;height:64px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center}
+.done-box .ok svg{width:30px;height:30px;stroke-width:3}
+
+/* focus */
+#focus{position:fixed;inset:0;z-index:30;display:flex;flex-direction:column;gap:12px;background:var(--glass-2);-webkit-backdrop-filter:blur(40px) saturate(160%);backdrop-filter:blur(40px) saturate(160%);padding:calc(env(safe-area-inset-top,0px) + 12px) max(20px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 20px) max(20px,env(safe-area-inset-left,0px))}
+.f-top{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:640px;width:100%;margin:0 auto}
+.f-mid{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;min-height:0;max-width:640px;width:100%;margin:0 auto}
+.f-q{font-size:clamp(22px,5.4vw,32px);font-weight:900;line-height:1.5;max-width:24ch}
+.f-base{font-size:12.5px;font-weight:800;color:var(--think)}
+.f-hint{font-size:14.5px;color:var(--muted);max-width:34ch;min-height:1.6em;white-space:pre-line}
+.f-steps{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.f-steps span{padding:3px 12px;border-radius:999px;background:var(--soft);font-size:13.5px;font-weight:700}
+.ring{position:relative;width:min(62vw,250px);aspect-ratio:1;max-width:100%}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg) scaleY(-1)}
+.ring circle{fill:none;stroke-width:12}
+.ring .bgc{stroke:var(--soft)}
+.ring .fg{stroke:var(--ink);stroke-linecap:round;transition:stroke-dashoffset .25s linear,stroke .3s}
+#focus[data-phase="think"] .fg{stroke:var(--think)}
+#focus[data-phase="speak"] .fg{stroke:var(--air)}
+#focus.last .fg,#focus.over .fg{animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.35}}
+.ring .in{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.ring .t{font-size:clamp(42px,12vw,60px);font-weight:900;line-height:1}
+#focus.over .ring .t{color:var(--air)}
+.air{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:900;letter-spacing:.08em;padding:3px 10px;border-radius:8px;border:1.5px solid var(--hair);color:var(--muted)}
+.air i{width:7px;height:7px;border-radius:50%;background:var(--hair)}
+#focus[data-phase="think"] .air{border-color:var(--think);color:var(--think)}
+#focus[data-phase="speak"] .air{border-color:var(--air);color:var(--air)}
+#focus[data-phase="speak"] .air i{background:var(--air);animation:blink 1.2s infinite}
+.cue{font-weight:900;color:var(--air);font-size:15px}
+.intr{border:1.5px solid var(--air);border-radius:20px;padding:12px 16px;background:var(--glass);display:flex;flex-direction:column;gap:4px;max-width:420px}
+.intr b{color:var(--air);font-size:17px}
+.f-bot{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;max-width:640px;width:100%;margin:0 auto}
+.f-bot .btn{min-width:150px;min-height:54px;font-size:16.5px}
+.bankhint{font-size:14px;padding:10px 14px;border-radius:16px;background:var(--soft);max-width:420px}
+.fcats{display:flex;flex-direction:column;gap:8px;width:100%;max-width:460px}
+.fcats .g{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fcats .c{background:var(--soft);border-radius:14px;padding:8px 10px;display:flex;flex-direction:column;gap:2px;text-align:right;min-width:0}
+.fcats .c b{font-size:12px;font-weight:800;color:var(--muted)}
+.fcats .c span{font-size:13.5px;font-weight:700;line-height:1.5}
+.fcats .fb{font-size:13px;color:var(--muted)}
+#focus.cats .ring{width:min(42vw,170px)}
+#focus.cats .f-mid{gap:12px}
+.f-mid{overflow-y:auto;justify-content:safe center}
+
+/* progress */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tile{padding:14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.tile b{font-size:26px;font-weight:900;line-height:1.2}
+.tile span{font-size:12px;font-weight:700;color:var(--muted)}
+.tile .good{color:var(--ok)}
+.tile .bad{color:var(--air)}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;padding:14px}
+.dc{border-radius:16px;padding:8px 2px;display:flex;flex-direction:column;align-items:center;background:var(--soft)}
+.dc b{font-size:17px;font-weight:900}
+.dc span{font-size:11px;font-weight:700;color:var(--muted)}
+.dc.done{background:var(--ok);color:#fff}
+.dc.done span{color:rgba(255,255,255,.85)}
+.dc.cur{outline:2px solid var(--ink);outline-offset:-2px}
+.panel{padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.panel h2{font-size:17px;font-weight:900}
+.chart svg{width:100%;height:auto;display:block}
+.chart .gl{stroke:var(--hair)}
+.chart .bar{fill:var(--link)}
+.chart .bar.last{fill:var(--air)}
+.chart text{fill:var(--muted);font-size:11px;font-family:var(--f)}
+.logi{display:grid;grid-template-columns:40px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--hair)}
+.logi:first-of-type{border-top:0}
+.logi .d{font-size:24px;font-weight:900;text-align:center}
+.logi ol{margin:6px 0 0;padding-right:18px;font-size:13.5px;color:var(--muted)}
+.empty{padding:20px;text-align:center;color:var(--muted);font-size:14px;border:1.5px dashed var(--hair);border-radius:18px}
+
+/* bank */
+.meter{height:8px;border-radius:4px;background:var(--soft);overflow:hidden}
+.meter i{display:block;height:100%;border-radius:4px;background:var(--ok)}
+.add{display:grid;grid-template-columns:1fr auto;gap:8px}
+.bi{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:start;padding:12px 0;border-top:1px solid var(--hair)}
+.bi:first-child{border-top:0}
+.bi .n{font-weight:900;color:var(--muted);text-align:center}
+.bi p{min-width:0;overflow-wrap:anywhere}
+.cat{padding:12px 0;border-top:1px solid var(--hair);display:flex;flex-direction:column;gap:4px}
+.cat:first-of-type{border-top:0}
+.cat h3{font-size:13px;font-weight:800;color:var(--muted)}
+.cat .j{font-size:15.5px;font-weight:800}
+.cat p{font-size:13.5px;color:var(--muted)}
+.plan10{display:flex;flex-direction:column;gap:6px;font-size:14px}
+.plan10 b{font-weight:900}
+
+/* toolbox */
+details.glass{padding:0;overflow:hidden}
+details summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:800;font-size:16px}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"";width:9px;height:9px;border:solid var(--muted);border-width:0 0 2px 2px;transform:rotate(-45deg);transition:transform .2s;flex:0 0 auto}
+details[open] summary::after{transform:rotate(135deg)}
+.db{padding:0 18px 18px;display:flex;flex-direction:column;gap:12px}
+.ex{border-right:3px solid var(--think);padding-right:12px;display:flex;flex-direction:column;gap:4px}
+.ex b{color:var(--think)}
+ul.pl,ol.pl{margin:0;padding-right:20px;display:flex;flex-direction:column;gap:8px}
+.rules li b{display:block}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:8px;text-align:right;border-bottom:1px solid var(--hair);vertical-align:top}
+th{font-size:12px;color:var(--muted)}
+a{color:var(--link)}
+
+.toast{position:fixed;z-index:40;top:calc(env(safe-area-inset-top,0px) + 14px);left:0;right:0;margin:0 auto;width:max-content;max-width:calc(100% - 32px);padding:10px 18px;border-radius:999px;font-weight:700;font-size:14px;opacity:0;transform:translateY(-10px);transition:opacity .2s,transform .2s;pointer-events:none}
+.toast.show{opacity:1;transform:none}
+
+@media (max-width:520px){
+  .big{font-size:56px;min-width:52px}
+  .tiles{grid-template-columns:1fr 1fr}
+  .tiles .tile:last-child{grid-column:1/-1}
+  .fills{grid-template-columns:repeat(2,1fr)}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+
+<div id="bg" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<main class="wrap">
+
+<!-- TODAY -->
+<section class="view" id="v-today">
+  <header class="top"><p class="kicker">بداهه · برنامه‌ی ۱۴ روزه</p><h1>تمرین امروز</h1></header>
+
+  <article class="glass hero">
+    <div class="hero-top">
+      <div class="big"><span id="hDay">۱</span><small>از ۱۴</small></div>
+      <div>
+        <span class="pill-new" id="hNew" hidden>مرحله‌ی تازه</span>
+        <p class="eyebrow" id="hPhase"></p>
+        <h2 id="hTitle"></h2>
+      </div>
+      <div class="stepper">
+        <button id="dPrev" aria-label="روز قبل"><svg class="i" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button id="dNext" aria-label="روز بعد"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+      </div>
+    </div>
+    <div class="row" style="gap:8px">
+      <span class="chip">فکر <b id="hThink"></b></span>
+      <span class="chip">صحبت <b id="hSpeak"></b></span>
+      <span class="chip">چارچوب <b id="hFw"></b></span>
+    </div>
+    <p class="rule" id="hRule"></p>
+    <div class="track" id="track" aria-label="۱۴ روز"></div>
+  </article>
+
+  <button class="glass cta" id="cta">
+    <span class="play"><svg class="i" viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></span>
+    <span><b id="ctaT">شروع تمرین اصلی</b><small id="ctaS"></small></span>
+    <span class="dots" id="ctaDots"></span>
+  </button>
+
+  <p class="sec-title">روتین ۳۰ دقیقه</p>
+  <ul class="glass list" id="routine">
+    <li><button class="item" data-open="warm"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M3 12h2M7 8v8M11 5v14M15 9v6M19 11v2"/></svg></span><span><h3>گرم کردن</h3><p>نفس، لرزش لب، زبان‌پیچ سین، تندحرف زدن</p></span><span class="meta">۵ دقیقه<span class="check" data-st="w"></span></span></button></li>
+    <li><button class="item" data-open="agil"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span><span><h3>چابکی ذهن</h3><p>دو کلمه‌ی بی‌ربط، ۳۰ ثانیه</p></span><span class="meta">۵ دقیقه<span class="check" data-st="a"></span></span></button></li>
+    <li><button class="item" data-open="focus"><span class="ic"><svg class="i" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span><span><h3>تمرین اصلی</h3><p>۴ دور: سؤال، فکر، صحبت. ضبط کن.</p></span><span class="meta"><span id="mainMeta">۱۲ دقیقه</span><span class="check" data-st="m"></span></span></button></li>
+    <li><button class="item" data-open="review"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h11"/></svg></span><span><h3>بازبینی</h3><p>شمارش پرکننده‌ها و ثبت روز</p></span><span class="meta">۵ دقیقه<span class="check" data-st="r"></span></span></button></li>
+    <li><button class="item" data-open="bankq"><span class="ic"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8M10 12h4"/></svg></span><span><h3>انبار مثال</h3><p>یک داستان یا خاطره‌ی تازه</p></span><span class="meta">۳ دقیقه<span class="check" data-st="b"></span></span></button></li>
+  </ul>
+</section>
+
+<!-- TOOLBOX -->
+<section class="view" id="v-toolbox" hidden>
+  <header class="top"><p class="kicker">مرجع</p><h1>جعبه‌ابزار</h1></header>
+
+  <details class="glass" open>
+    <summary>قانون‌های من</summary>
+    <div class="db">
+      <p class="small muted">از تحلیل ضبط‌های روز ۱ تا ۳ درآمده.</p>
+      <ol class="pl rules">
+        <li><b>جمله‌ی اول = ادعا.</b><span class="small muted">روز ۱ ادعا در ثانیه‌ی ۴۶ بود؛ روز ۲ در ثانیه‌ی ۲.</span></li>
+        <li><b>آخر هر جمله: نقطه، نفس، سکوت.</b><span class="small muted">«ااا» تقریباً همیشه اول جمله‌ی بعدی می‌آید.</span></li>
+        <li><b>وقت فکر = دلیل + مثال.</b><span class="small muted">«چرا؟ چون که...» را فقط وقتی بپرس که جوابش آماده است.</span></li>
+        <li><b>عدد اعلام نکن مگر همه آماده باشند.</b><span class="small muted">«دو چیز... دو چیه؟ ااا...»</span></li>
+        <li><b>«این از این. از طرف دیگه...» را نگه دار.</b></li>
+        <li><b>مثال شخصی قوی‌ترین مدرک است.</b><span class="small muted">«من از اول کارآفرین نبودم.»</span></li>
+        <li><b>صحنه را بازی کن، توضیح نده.</b><span class="small muted">«آقا فلانی حرف نزن...»</span></li>
+        <li><b>جمله‌ی آخر = ادعا.</b><span class="small muted">نه «همین»، نه «و...».</span></li>
+        <li><b>ادعای مطلق نگو</b><span class="small muted">اگر آخرش «در اکثر مواقع» می‌شود.</span></li>
+      </ol>
+    </div>
+  </details>
+
+  <details class="glass">
+    <summary>سه چارچوب</summary>
+    <div class="db">
+      <h3>PREP · وقتی نظرت را می‌خواهند</h3>
+      <div class="ex"><span><b>ادعا:</b> به نظرم گوشی سر کلاس باید ممنوع باشد.</span><span><b>دلیل:</b> چون یک نوتیفیکیشن کافی است تا رشته‌ی فکر بچه‌ها پاره شود.</span><span><b>مثال:</b> یک بار وسط یک مفهوم سخت گوشی یکی زنگ خورد و نصف کلاس برنگشت.</span><span><b>ادعا:</b> برای همین گوشی جایش در کیف است، نه روی میز.</span></div>
+      <h3>ماجرا ← اهمیت ← اقدام · وقتی باید توضیح بدهی</h3>
+      <div class="ex"><span><b>ماجرا:</b> گوشی‌ها دست همه‌ی بچه‌هاست.</span><span><b>اهمیت:</b> یعنی سر هر کلاس یک رقیب جدی برای توجه داریم.</span><span><b>اقدام:</b> یا ممنوعش کنیم، یا از خودش در درس استفاده کنیم.</span></div>
+      <h3>یک نکته · نون، چای، مربا، پنیر 🍞</h3>
+      <div class="ex"><span><b>نون (نکته):</b> «یک نکته‌ی مهم این است که...» در یک جمله.</span><span><b>چای (چرا):</b> «چرا؟ چون...»</span><span><b>مربا (مثلاً):</b> فقط یک مثال، با جزئیات.</span><span><b>پنیر (پس):</b> به چه درد می‌خورد، و دوباره همان نکته.</span></div>
+      <p class="small muted">ماندی؟ فقط کلمه‌ی شروع قدم بعدی را بگو. وقتی قفل کردی و فقط دو جمله وقت داری، «نون» به‌تنهایی کافی است.</p>
+    </div>
+  </details>
+
+  <details class="glass">
+    <summary>وقتی غافلگیر شدی</summary>
+    <div class="db">
+      <ol class="pl">
+        <li><b>دهان بسته، یک نفس، مکث.</b> سکوت دوثانیه‌ای اعتمادبه‌نفس است؛ «اِممم» دستپاچگی.</li>
+        <li><b>سؤال را در یک جمله بازگو کن.</b> «یعنی می‌پرسی...» کوتاه، نه کلمه‌به‌کلمه.</li>
+        <li><b>یک چارچوب انتخاب کن،</b> نه کل متن را.</li>
+        <li><b>اول اصل مطلب،</b> بعد توضیح.</li>
+        <li><b>تپق زدی؟</b> نایست، برو جمله‌ی بعد.</li>
+        <li><b>نمی‌دانی؟</b> «نمی‌دانم» را محکم بگو.</li>
+      </ol>
+    </div>
+  </details>
+
+  <details class="glass">
+    <summary>برنامه‌ی ۱۴ روزه</summary>
+    <div class="db">
+      <div class="tbl"><table>
+        <thead><tr><th>روزها</th><th>فکر</th><th>صحبت</th><th>تمرکز</th></tr></thead>
+        <tbody>
+          <tr><td><b>۱ تا ۳</b></td><td>۳۰ ثانیه</td><td>۶۰ ثانیه</td><td>فقط PREP</td></tr>
+          <tr><td><b>۴ تا ۷</b></td><td>۲۰ ثانیه</td><td>۹۰ ثانیه</td><td>چرخش سه چارچوب</td></tr>
+          <tr><td><b>۸ تا ۱۰</b></td><td>۱۰ ثانیه</td><td>۲ دقیقه</td><td>یک مثال از انبار در هر صحبت</td></tr>
+          <tr><td><b>۱۱ تا ۱۴</b></td><td>صفر</td><td>۲٫۵ دقیقه</td><td>دور مزاحمت؛ روز ۱۴ سؤال روز ۱ تکرار می‌شود</td></tr>
+        </tbody>
+      </table></div>
+      <p class="small">هفته‌ای دو بار جلوی آدم واقعی حرف بزن.</p>
+    </div>
+  </details>
+
+  <details class="glass">
+    <summary>زبان‌پیچ‌ها و جفت‌های سین</summary>
+    <div class="db" id="twAll"></div>
+  </details>
+
+  <details class="glass">
+    <summary>چه چیزهایی را جدی نگیری</summary>
+    <div class="db">
+      <ul class="pl small">
+        <li>ادعاهای شبه‌علمی مثل «نورون‌های آینه‌ای در ۲۰۰ میلی‌ثانیه» یا «۳ ثانیه مکث قشر سینگولیت را فعال می‌کند». منبع معتبری برایشان پیدا نشد.</li>
+        <li>آمار بازدید ویدیوها تأیید نشد.</li>
+        <li>«۲۰ منبع» در واقع حدود ۵ ایده‌ی تکراری بود.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="glass">
+    <summary>منابع</summary>
+    <div class="db">
+      <ul class="pl small">
+        <li>کتاب Think Faster, Talk Smarter از Matt Abrahams</li>
+        <li><a href="https://thespeakerlab.com/blog/public-speaking-exercises/" target="_blank" rel="noopener">The Speaker Lab: Public Speaking Exercises</a></li>
+        <li><a href="https://www.toastmasters.org/magazine/magazine-issues/2020/oct/spontaneous-speaking" target="_blank" rel="noopener">Toastmasters: Spontaneous Speaking</a></li>
+        <li><a href="https://yoodli.ai/blog/what-is-table-topics-impromptu-speaking-tips" target="_blank" rel="noopener">Yoodli: What Is Table Topics</a></li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- PROGRESS -->
+<section class="view" id="v-progress" hidden>
+  <header class="top"><p class="kicker">آمار</p><h1>پیشرفت</h1></header>
+  <div class="tiles">
+    <div class="glass tile"><span>روز ثبت‌شده</span><b id="tDone">۰</b><span>از ۱۴</span></div>
+    <div class="glass tile"><span>پرکننده در دقیقه</span><b id="tLast">—</b><span id="tLastD">آخرین روز</span></div>
+    <div class="glass tile"><span>نسبت به روز ۱</span><b id="tDelta">—</b><span id="tDeltaS">کمتر بهتر است</span></div>
+  </div>
+  <div class="glass days" id="days"></div>
+  <article class="glass panel chart">
+    <h2>پرکننده در دقیقه</h2>
+    <p class="small muted">روزهایی که مدت صحبت برایشان ثبت نشده، در نمودار نیستند. از بازبینیِ همان روز اضافه‌اش کن.</p>
+    <div id="chart"></div>
+  </article>
+  <article class="glass panel">
+    <h2>دفترچه</h2>
+    <div id="logList"></div>
+  </article>
+  <article class="glass panel">
+    <h2>پشتیبان داده‌ها</h2>
+    <p class="small muted" id="syncTxt">داده‌ها در همین مرورگر ذخیره می‌شوند.</p>
+    <div class="row">
+      <button class="btn sm" id="expBtn">کپی پشتیبان</button>
+      <button class="btn sm" id="impOpen">بازگردانی از پشتیبان</button>
+    </div>
+    <textarea id="expTxt" hidden readonly aria-label="متن پشتیبان"></textarea>
+    <div id="impBox" hidden class="card">
+      <textarea id="impTxt" placeholder="متن پشتیبان را این‌جا بچسبان" aria-label="متن پشتیبان برای بازگردانی"></textarea>
+      <div class="row"><button class="btn sm pri" id="impBtn">بازگردانی</button><span class="small muted" id="impMsg"></span></div>
+    </div>
+  </article>
+</section>
+
+<!-- BANK -->
+<section class="view" id="v-bank" hidden>
+  <header class="top"><p class="kicker">داستان‌ها و خاطره‌ها</p><h1>انبار مثال</h1></header>
+  <article class="glass panel">
+    <div class="row" style="justify-content:space-between"><b id="bankN">۰ از ۱۵</b><span class="small muted">هدف: ۱۰ تا ۱۵</span></div>
+    <div class="meter"><i id="bankM" style="width:0"></i></div>
+    <div class="add"><input type="text" id="bankIn" placeholder="ماجرا در یک خط + به چه موضوع‌هایی می‌خورد" aria-label="مثال تازه"><button class="btn pri" id="bankAdd">افزودن</button></div>
+  </article>
+  <article class="glass panel">
+    <h2>دسته‌ها و جوکرها</h2>
+    <p class="small muted">در ۱۰ ثانیه دنبال مثال نگرد. فقط بپرس «این سؤال مال کدام دسته است؟» و جوکر ⭐ آن دسته را بردار.</p>
+    <div id="catList"></div>
+    <div class="card plan10">
+      <span><b>ثانیه‌ی ۰ تا ۳:</b> موافقی یا مخالف؟ (ادعا)</span>
+      <span><b>ثانیه‌ی ۳ تا ۷:</b> دسته را تشخیص بده و جوکرش را بردار</span>
+      <span><b>ثانیه‌ی ۷ تا ۱۰:</b> جمله‌ی اول را در ذهنت بگو</span>
+      <span class="muted">هیچی نیامد؟ بگو «سر کلاس خودم…» و برو سراغ جوکر کلاس.</span>
+    </div>
+  </article>
+  <article class="glass panel"><div id="bankList"></div></article>
+</section>
+
+</main>
+
+<nav class="glass tabbar" aria-label="بخش‌ها">
+  <a href="#today" data-v="today"><svg class="i" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>تمرین</a>
+  <a href="#toolbox" data-v="toolbox"><svg class="i" viewBox="0 0 24 24"><path d="M3 5h6a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H3zM21 5h-6a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h7z"/></svg>ابزار</a>
+  <a href="#progress" data-v="progress"><svg class="i" viewBox="0 0 24 24"><path d="M5 20V11M12 20V4M19 20v-6M3 20h18"/></svg>پیشرفت</a>
+  <a href="#bank" data-v="bank"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8M10 12h4"/></svg>انبار</a>
+</nav>
+
+<div class="scrim" id="scrim" hidden></div>
+
+<!-- SHEET: warm-up -->
+<section class="sheet" id="sh-warm" hidden role="dialog" aria-modal="true" aria-labelledby="t-warm">
+  <div class="grab"></div>
+  <div class="sh-head"><h2 id="t-warm">گرم کردن</h2><button class="x" data-close aria-label="بستن"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="card">
+    <label class="tick"><input type="checkbox" id="w1"><span><b>نفس · ۱ دقیقه</b><br><span class="small muted">۴ ثانیه دم، ۴ نگه داشتن، ۶ بازدم.</span></span></label>
+    <label class="tick"><input type="checkbox" id="w2"><span><b>لرزش لب · ۳۰ ثانیه</b><br><span class="small muted">لب‌ها شل، «بررررر»، بعد یک «اووو» مثل آژیر.</span></span></label>
+    <label class="tick"><input type="checkbox" id="w3"><span><b>زبان‌پیچ · ۱ دقیقه</b><br><span class="small muted">اول آهسته جلوی آینه، بعد تند؛ هر کدام سه بار.</span></span></label>
+  </div>
+  <div class="card">
+    <h3>زبان‌پیچ سین</h3>
+    <div class="seg" id="twSeg" role="group" aria-label="مرحله"></div>
+    <ol class="tw" id="twList"></ol>
+    <h3>جفت‌های تمایز · هر جفت پنج بار</h3>
+    <div class="pairs" id="pairList"></div>
+  </div>
+  <div class="card">
+    <label class="tick"><input type="checkbox" id="w4"><span><b>تندحرف زدن · ۳ × ۶۰ ثانیه</b><br><span class="small muted">بی‌وقفه درباره‌ی این کلمه حرف بزن.</span></span></label>
+    <div class="word" id="rWord"></div>
+    <div class="row"><button class="btn sm" id="wNew">کلمه‌ی دیگر</button><button class="btn sm" id="w60">۶۰ ثانیه</button><span class="cd" id="c60"></span></div>
+  </div>
+  <button class="btn pri" id="warmDone">گرم کردن تمام شد</button>
+</section>
+
+<!-- SHEET: agility -->
+<section class="sheet" id="sh-agil" hidden role="dialog" aria-modal="true" aria-labelledby="t-agil">
+  <div class="grab"></div>
+  <div class="sh-head"><h2 id="t-agil">چابکی ذهن</h2><button class="x" data-close aria-label="بستن"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <p class="muted small">این دو را با یک داستان یا استدلال در ۳۰ ثانیه به هم وصل کن. ۴ تا ۵ بار.</p>
+  <div class="pair"><div class="word" id="pA"></div><span class="plus">+</span><div class="word" id="pB"></div></div>
+  <div class="row"><button class="btn sm" id="pNew">جفت دیگر</button><button class="btn sm" id="p30">۳۰ ثانیه</button><span class="cd" id="c30"></span></div>
+  <button class="btn pri" id="agilDone">چابکی ذهن تمام شد</button>
+</section>
+
+<!-- SHEET: review -->
+<section class="sheet" id="sh-review" hidden role="dialog" aria-modal="true" aria-labelledby="t-review">
+  <div class="grab"></div>
+  <div class="sh-head"><h2 id="t-review">بازبینی روز ۱</h2><button class="x" data-close aria-label="بستن"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div id="rvForm" style="display:flex;flex-direction:column;gap:16px">
+    <div class="card">
+      <h3>کدام ضبط را بازبینی می‌کنی؟</h3>
+      <p class="small muted">بدترین ضبط را انتخاب کن تا مدتش خودکار پر شود.</p>
+      <div class="rchips" id="rvRounds"></div>
+      <label class="f" for="rvSecs">مدت همان ضبط (ثانیه)<input type="number" id="rvSecs" min="0" max="900" inputmode="numeric" placeholder="مثلاً ۷۵"></label>
+    </div>
+    <div class="card">
+      <h3>هر پرکننده که شنیدی بزن</h3>
+      <div class="fills" id="fills">
+        <button class="fill" data-k="em"><b>۰</b><span>ااا / اِه</span></button>
+        <button class="fill" data-k="yani"><b>۰</b><span>امم</span></button>
+        <button class="fill" data-k="khob"><b>۰</b><span>یعنی / خب</span></button>
+        <button class="fill" data-k="other"><b>۰</b><span>بقیه</span></button>
+      </div>
+      <div class="row" style="justify-content:space-between">
+        <span class="kpi"><b id="rvTot">۰</b><span class="muted small">پرکننده</span></span>
+        <span class="kpi"><b id="rvFpm">—</b><span class="muted small">در دقیقه</span></span>
+        <button class="btn ghost sm" id="rvZero">صفر کن</button>
+      </div>
+    </div>
+    <label class="f" for="rvNote">یک چیز برای فردا<input type="text" id="rvNote" placeholder="مثلاً: جمله‌ی آخر = ادعا"></label>
+    <label class="switch" for="rvLive"><span>امروز جلوی آدم واقعی هم حرف زدم</span><input type="checkbox" id="rvLive"></label>
+    <button class="btn pri" id="rvSave">ثبت روز</button>
+  </div>
+  <div id="rvDone" class="done-box" hidden>
+    <span class="ok"><svg class="i" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span>
+    <h3 id="rvDoneT" style="font-size:20px;font-weight:900">روز ثبت شد</h3>
+    <p class="small muted">خلاصه را همراه متن ضبط‌ها برای تحلیل بفرست.</p>
+    <div class="row" style="justify-content:center">
+      <button class="btn" id="rvCopy">کپی خلاصه</button>
+      <button class="btn pri" id="rvNext">برو روز بعد</button>
+    </div>
+    <textarea id="rvCopyTxt" hidden readonly aria-label="خلاصه‌ی روز" style="direction:rtl;text-align:right;font-size:13px"></textarea>
+    <button class="btn ghost sm" id="rvEdit">ویرایش</button>
+  </div>
+</section>
+
+<!-- SHEET: bank quick -->
+<section class="sheet" id="sh-bankq" hidden role="dialog" aria-modal="true" aria-labelledby="t-bankq">
+  <div class="grab"></div>
+  <div class="sh-head"><h2 id="t-bankq">یک مثال تازه</h2><button class="x" data-close aria-label="بستن"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <p class="small muted">یک داستان، خاطره یا آمار. مثلاً: «روزی که برای کلاس آنلاین ساعت هشت بیدار شدم؛ به کار در خانه و مدیریت وقت می‌خورد.»</p>
+  <div class="add"><input type="text" id="bqIn" placeholder="در یک خط" aria-label="مثال تازه"><button class="btn pri" id="bqAdd">افزودن</button></div>
+  <p class="small muted" id="bqN"></p>
+</section>
+
+<!-- FOCUS -->
+<div id="focus" hidden role="dialog" aria-modal="true" aria-label="تمرین اصلی" data-phase="idle">
+  <div class="f-top">
+    <button class="x" id="fClose" aria-label="بستن"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <span class="kicker" id="fRound">دور ۱ از ۴</span>
+    <span class="dots" id="fDots"></span>
+  </div>
+  <div class="f-mid">
+    <span class="f-base" id="fBase" hidden>سؤال مقایسه با روز ۱</span>
+    <p class="f-q" id="fQ"></p>
+    <div class="ring">
+      <svg viewBox="0 0 260 260" aria-hidden="true"><circle class="bgc" cx="130" cy="130" r="118"></circle><circle class="fg" id="fArc" cx="130" cy="130" r="118"></circle></svg>
+      <div class="in"><span class="air"><i></i><span id="fAir">آماده</span></span><span class="t" id="fT">۰:۳۰</span><span class="small muted" id="fLbl">وقت فکر</span></div>
+    </div>
+    <p class="cue" id="fCue" hidden>جمع‌بندی: ادعا را تکرار کن</p>
+    <div class="intr" id="fIntr" hidden></div>
+    <p class="f-hint" id="fHint"></p>
+    <div class="f-steps" id="fSteps"></div>
+    <div class="fcats" id="fBank" hidden></div>
+  </div>
+  <div class="f-bot">
+    <button class="btn" id="fSec">سؤال دیگر</button>
+    <button class="btn pri" id="fPri">شروع</button>
+  </div>
+</div>
+
+<div class="glass toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="apk.js"></script>
+<script>
+(function(){
+"use strict";
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const fa=n=>String(n).replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]);
+const fa1=x=>fa(x.toFixed(1).replace(".","٫"));
+const mmss=s=>{s=Math.max(0,Math.round(s));return fa(Math.floor(s/60)+":"+String(s%60).padStart(2,"0"));};
+const secTxt=s=>s===0?"صفر":s<60?fa(s)+" ثانیه":s%60?mmss(s):fa(s/60)+" دقیقه";
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const uniq=a=>[...new Set(a)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ---------- content ---------- */
+const OP=["آیا گوشی باید سر کلاس ممنوع باشد؟","هوش مصنوعی معلم‌ها را بی‌کار می‌کند؟","آیا نمره معیار خوبی برای یادگیری است؟","کار تیمی بهتر است یا کار فردی؟","پول خوشبختی می‌آورد؟","آیا باید برنامه‌نویسی در مدرسه اجباری شود؟","تکلیف شب باید حذف شود؟","کار مورد علاقه بهتر است یا کار پردرآمد؟","تنبلی همیشه بد است؟","رقابت بین دانش‌آموزان مفید است یا مضر؟","آیا اشتباه کردن جلوی دیگران بد است؟","کارآفرینی را می‌شود یاد داد؟","آیا باید به بچه‌ها پول توجیبی داد؟","انگیزه مهم‌تر است یا عادت؟","تکنولوژی ما را باهوش‌تر کرده یا تنبل‌تر؟","آیا رهبر بودن ذاتی است؟","کتاب کاغذی بهتر است یا الکترونیکی؟","ورزش باید در مدرسه بیشتر شود؟","آیا آدم‌ها با گذشت زمان واقعاً تغییر می‌کنند؟","بازی‌های ویدیویی برای بچه‌ها مفیدند؟","آیا باید همیشه راستش را گفت؟","استرس همیشه بد است؟","کار در خانه بهتر است یا در دفتر؟","آیا آدم‌ها باید شغلشان را چند بار عوض کنند؟","آیا شانس در موفقیت نقش دارد؟","آیا بچه‌ها باید گوشی هوشمند داشته باشند؟","کتابخانه‌ها هنوز لازم‌اند؟","آیا تنهایی گاهی لازم است؟","آیا هنر باید در مدرسه جدی‌تر گرفته شود؟","خلاقیت را می‌شود آموزش داد؟","پیام صوتی بهتر است یا پیام متنی؟","تلگرام برای آموزش مناسب است؟","آیا نظم مهم‌تر از استعداد است؟","آیا باید به همه‌ی پیام‌ها فوراً جواب داد؟","کمال‌گرایی کمک می‌کند یا آسیب می‌زند؟","آیا تبلیغات ما را فریب می‌دهد؟","کلاس آنلاین بهتر است یا حضوری؟","آیا دانشگاه رفتن هنوز ارزش دارد؟","آیا کتاب‌های خودیاری واقعاً کمک می‌کنند؟","آیا ساعت کاری باید کوتاه‌تر شود؟","شهر بزرگ بهتر است یا شهر کوچک؟","آیا بچه‌ها باید از کودکی زبان دوم یاد بگیرند؟","آیا امتحان‌های تستی یادگیری را خراب می‌کنند؟","آیا معلم باید با دانش‌آموزان دوست باشد؟","آیا لباس فرم مدرسه لازم است؟","آیا بچه‌ها باید در کارهای خانه کمک کنند؟","آیا شبکه‌های اجتماعی ما را تنهاتر کرده‌اند؟","آیا خواب بعدازظهر مفید است؟","آیا سفر کردن آدم را عوض می‌کند؟","آیا موفقیت بدون شکست ممکن است؟","آیا پول‌دار شدن هدف خوبی است؟","آیا هوش مصنوعی باید در امتحان مجاز باشد؟","آیا بچه‌ها زیادی زیر فشار درس هستند؟","آیا درس خواندن با موسیقی بهتر است؟","آیا تیزهوشان باید مدرسه‌ی جدا داشته باشند؟","آیا بی‌حوصلگی می‌تواند مفید باشد؟","خرید اینترنتی بهتر است یا حضوری؟","آیا آدم‌ها با بحث قانع می‌شوند؟","آیا رسانه‌ها اخبار را بزرگ‌نمایی می‌کنند؟","آیا بزرگ‌ترها هم به بازی کردن نیاز دارند؟","آیا آدم باید همیشه برنامه‌ریزی کند؟","آیا حیوان خانگی زندگی را بهتر می‌کند؟","آیا محدود کردن زمان گوشی جواب می‌دهد؟","آیا درس تاریخ هنوز لازم است؟","آیا ریاضی برای همه لازم است؟","آیا اعتمادبه‌نفس یاد گرفتنی است؟","آیا گفتن «نه» مهارت مهمی است؟","آیا آدم‌های درون‌گرا در کار ضرر می‌کنند؟","آیا باید به بچه‌ها برای نمره جایزه داد؟","آیا کتاب صوتی هم کتاب خواندن حساب می‌شود؟","سرعت مهم‌تر است یا دقت؟","تجربه مهم‌تر است یا مدرک؟","آیا آدم باید شغل دوم داشته باشد؟","آیا ترجمه‌ی ماشینی یادگیری زبان را بی‌فایده می‌کند؟","آیا مدرسه بچه‌ها را برای زندگی واقعی آماده می‌کند؟","آیا سکوت گاهی بهتر از حرف زدن است؟","آیا باید پس‌انداز را از کودکی یاد گرفت؟","آیا شهرت ارزشش را دارد؟","آیا کار کردن حین تحصیل خوب است؟","انتقاد مستقیم بهتر است یا غیرمستقیم؟","آیا آدم‌ها ذاتاً خوب‌اند؟","آیا خوش‌بینی همیشه خوب است؟","آیا حافظه‌ی قوی نشانه‌ی هوش است؟","آیا آدم می‌تواند بی‌اینترنت زندگی کند؟","آیا هوش مصنوعی خلاق است؟","آیا گذشته را باید فراموش کرد؟","آیا عادت‌ها از اراده قوی‌ترند؟","آیا ساده‌زیستی آدم را خوشحال‌تر می‌کند؟","آیا رؤیاپردازی وقت تلف کردن است؟","آیا حقیقت همیشه یکی است؟","آینده مهم‌تر است یا حال؟","آیا شکست خوردن جلوی جمع تجربه‌ی خوبی است؟","آیا رقابت بین کسب‌وکارها به نفع مردم است؟"];
+const EX=["چرا بعضی‌ها از سخنرانی می‌ترسند؟","یک معلم خوب چه ویژگی‌ای دارد که بقیه ندارند؟","چطور می‌شود حواس‌پرتی را کم کرد؟","چرا بچه‌ها سؤال پرسیدن را کنار می‌گذارند؟","آینده‌ی آموزش آنلاین چیست؟","چرا بعضی ایده‌ها وایرال می‌شوند؟","مهم‌ترین مهارت قرن بیست‌ویکم چیست؟","بهترین زمان روز برای یاد گرفتن کی است؟","چطور یک روز بد را خوب کنیم؟","اگر مدرسه‌ای از صفر می‌ساختی، چه شکلی بود؟","چرا یادگیری ریاضی برای خیلی‌ها سخت است؟","چطور می‌شود علم را برای بچه‌ها دوست‌داشتنی کرد؟","کلاس‌های پرجمعیت چه مشکلی دارند؟","چرا مردم اخبار بد را بیشتر دنبال می‌کنند؟","ده سال دیگر کلاس درس چه شکلی است؟","چطور می‌شود عادت بد را ترک کرد؟","چرا بعضی دانش‌آموزان از علوم فرار می‌کنند؟","چرا داستان‌ها در یادگیری این‌قدر مؤثرند؟","چطور یک کانال آموزشی را جذاب کنیم؟","بهترین راه یاد گرفتن یک زبان جدید چیست؟","بهترین راه آرام شدن قبل از یک کار مهم چیست؟","هوش مصنوعی چطور کار معلم‌ها را عوض می‌کند؟","چرا آدم‌ها کارها را عقب می‌اندازند؟","یک روز کاملاً بی‌اینترنت چه شکلی است؟","چرا مردم به فال و پیشگویی علاقه دارند؟","چطور می‌شود یک جلسه‌ی خسته‌کننده را جذاب کرد؟","چرا بعضی آدم‌ها همیشه دیر می‌رسند؟","چطور می‌شود به یک بچه‌ی کم‌انگیزه کمک کرد؟","مشکل اصلی ترافیک شهرهای بزرگ چیست؟","چرا خواب کافی برای یادگیری مهم است؟","چطور می‌شود یک مفهوم سخت را ساده توضیح داد؟","چرا گیاهان برای زندگی ما مهم‌اند؟","اتم را برای یک بچه‌ی ده‌ساله چطور توضیح می‌دهی؟","چرا آب‌وهوا هر سال عجیب‌تر می‌شود؟","چطور می‌شود خبر جعلی را تشخیص داد؟","چرا آدم‌ها این‌قدر به گوشی وابسته‌اند؟","یک کسب‌وکار کوچک چطور مشتری پیدا می‌کند؟","چرا بعضی کلاس‌ها بی‌نظم‌اند؟","چطور می‌شود یک عادت خوب ساخت؟","چرا نوشتن به فکر کردن کمک می‌کند؟","کم‌آبی چه اثری بر زندگی روزمره دارد؟","چرا آدم‌ها از تغییر می‌ترسند؟","یک تیم خوب چطور ساخته می‌شود؟","چرا بعضی ویدیوها را تا آخر نگاه می‌کنیم؟","با یک آدم عصبانی چطور باید حرف زد؟","چرا یادداشت‌برداری مهم است؟","یک سخنرانی خوب را چطور شروع کنیم؟","چرا بعضی معلم‌ها در یاد ما می‌مانند؟","هوش مصنوعی چطور جواب سؤال‌ها را می‌سازد؟","چرا آدم‌ها دروغ می‌گویند؟","چطور می‌شود وقت را بهتر مدیریت کرد؟","چرا ورزش حال آدم را خوب می‌کند؟","چطور می‌شود از اشتباه درس گرفت؟","شادی واقعی از کجا می‌آید؟","چرا انسان‌ها به قصه نیاز دارند؟","اعتماد چطور ساخته می‌شود و چطور از بین می‌رود؟","چرا در بزرگسالی زمان سریع‌تر می‌گذرد؟","خلاقیت از کجا می‌آید؟","چرا بعضی ایده‌های خوب شکست می‌خورند؟","چرا آدم‌ها در جمع رفتار دیگری دارند؟"];
+const ST=["بهترین درسی که از یک شکست گرفتی چه بود؟","یک عادت کوچک که زندگی‌ات را عوض کرد چیست؟","اگر یک روز وزیر آموزش و پرورش بودی، اولین کارت چه بود؟","اگر می‌توانستی یک مهارت را یک‌شبه یاد بگیری، چه بود؟","بهترین توصیه‌ای که تا حالا شنیدی چه بوده؟","اگر به ده سال پیش برمی‌گشتی، به خودت چه می‌گفتی؟","یک کتاب یا فیلم که نظرت را عوض کرد معرفی کن.","یک تصمیم سخت که گرفتی و پشیمان نیستی.","اگر یک ابرقدرت داشتی، چه بود و چرا؟","یک خاطره‌ی خنده‌دار از مدرسه تعریف کن.","یک مکان که دوست داری حتماً ببینی.","سخت‌ترین سؤالی که یک دانش‌آموز از تو پرسیده چه بوده؟","یک غذا که همه باید امتحانش کنند.","اولین کاری که صبح‌ها می‌کنی و چرا؟","یک ترس که بر آن غلبه کردی.","اگر یک روز نامرئی بودی چه می‌کردی؟","یک چیز که امسال یاد گرفتی.","یک جمله که شعار زندگی‌ات است.","یک لحظه که به خودت افتخار کردی.","مهم‌ترین چیزی که از خانواده‌ات یاد گرفتی.","بدترین توصیه‌ای که شنیدی چه بوده؟","یک کار که همیشه عقب می‌اندازی و چرا.","اگر معلمِ معلم‌ها بودی، چه یادشان می‌دادی؟","بهترین معلمی که داشتی چه کرد؟","بهترین هدیه‌ای که گرفتی یا دادی.","اولین روز کاری‌ات چطور گذشت؟","یک اشتباه که هنوز از آن خنده‌ات می‌گیرد.","اگر یک سال تعطیلی داشتی، چه می‌کردی؟","یک اپلیکیشن که زندگی‌ات را راحت کرده معرفی کن.","یک آدم که روی تو اثر گذاشته معرفی کن.","اگر یک کانال تلگرام تازه راه می‌انداختی، موضوعش چه بود؟","یک کلاس که هیچ‌وقت فراموشش نمی‌کنی.","اگر یک روز جای یکی از دانش‌آموزانت بودی، چه حسی داشتی؟","یک مهارت که دیر یاد گرفتی و پشیمانی.","بهترین روز هفته‌ات کدام است و چرا؟","یک چیز کوچک که خوشحالت می‌کند.","اگر می‌توانستی با یک آدم مشهور شام بخوری، چه کسی بود؟","یک سفر که هیچ‌وقت فراموش نمی‌کنی.","اگر یک کتاب می‌نوشتی، اسمش چه بود؟","یک باور که در این چند سال عوض شده.","اگر فردا آخرین روز کاری‌ات بود، چه می‌کردی؟","یک سؤال که دوست داری جوابش را بدانی.","اولین باری که جلوی جمع حرف زدی چه شد؟","یک تصمیم که اگر دوباره بود، جور دیگری می‌گرفتی.","چه چیزی به کارت معنا می‌دهد؟"];
+const BASE="اگر مدرسه‌ای از صفر می‌ساختی، چه شکلی بود؟";
+const PRE_USED=[BASE,"استرس همیشه بد است؟","بهترین زمان روز برای یاد گرفتن کی است؟","آیا نمره معیار خوبی برای یادگیری است؟","آیا آدم‌ها با گذشت زمان واقعاً تغییر می‌کنند؟","آیا آدم‌ها با بحث قانع می‌شوند؟","تکنولوژی ما را باهوش‌تر کرده یا تنبل‌تر؟","تکلیف شب باید حذف شود؟","کار در خانه بهتر است یا در دفتر؟","کارآفرینی را می‌شود یاد داد؟","یک کتاب یا فیلم که نظرت را عوض کرد معرفی کن.","کلاس‌های پرجمعیت چه مشکلی دارند؟"];
+const INTR=["دقیقاً منظورت چیست؟","یعنی چی؟ ساده‌تر بگو.","این کلمه را تعریف کن.","منظورت همه‌ی آدم‌هاست یا بعضی‌ها؟","یعنی می‌گویی همیشه؟","یک مثال واقعی بزن.","تجربه‌ی شخصی خودت چه می‌گوید؟","یک نمونه از ایران بگو.","یک مثال از کلاس خودت بزن.","آمار یا شاهدی داری؟","برای یک بچه‌ی ده‌ساله هم صدق می‌کند؟","مخالفانت چه می‌گویند؟","اگر اشتباه کرده باشی چه؟","چرا این‌قدر مطمئنی؟","این با چیزی که اول گفتی تناقض ندارد؟","من کاملاً مخالفم. قانعم کن.","این فقط نظر شخصی توست، نه؟","یکی را می‌شناسم که دقیقاً برعکس است.","هزینه‌اش چه می‌شود؟","چه کسی بیشترین ضرر را می‌کند؟","پنج سال پیش هم همین را می‌گفتی؟","اگر همه این کار را بکنند چه می‌شود؟","استثنایش چیست؟","این قبلاً امتحان شده و جواب نداده.","چرا تا حالا کسی این کار را نکرده؟","در یک جمله خلاصه‌اش کن.","مهم‌ترین نکته‌ات کدام بود؟","اگر فقط یک کار می‌شد کرد، کدام؟","در سه کلمه بگو.","برای کسی که تازه رسیده دوباره بگو.","اگر پول نامحدود داشتی چه؟","ده سال دیگر هم همین را می‌گویی؟","در ایران هم جواب می‌دهد؟","اگر رئیست مخالف باشد چه؟","اگر فقط یک هفته وقت داشتی چه؟","اگر بچه‌ی خودت بود چه؟","اگر قانون می‌شد چه؟","در یک روستا چه؟","خودت به این عمل می‌کنی؟","آخرین باری که این را دیدی کی بود؟","چه چیزی نظرت را عوض می‌کند؟","چرا باید حرفت را باور کنم؟","وقتمان کم است؛ نتیجه را بگو.","این به من چه ربطی دارد؟","این را قبلاً نگفتی؟","مطمئنی درست است؟","از کجا می‌دانی؟","بدترین حالتش چیست؟","بهترین حالتش چیست؟","اگر من جای تو بودم چه کار می‌کردم؟"];
+const WC=uniq("چتر یخچال کبوتر قطار آینه کلید باران موبایل نان کوه ساعت مدرسه دریا کتابخانه چراغ مترو قهوه شطرنج پل گلدان فوتبال کیف پرنده آسانسور بازار جنگل روزنامه دوچرخه ستاره نامه عینک آتش فرودگاه بیمارستان تابستان مداد سکه نقشه ربات خیابان کویر پیانو تلسکوپ اتوبوس یخ کتاب زنبور شمع عکس کارخانه باغ پنجره قایق صندلی رادیو میکروسکوپ چای برف کلاغ پاسپورت موزه ماسک بادبادک آسمان‌خراش ماه کاکتوس مترسک نردبان قطب‌نما انار هندوانه کفش جوراب بالش پتو کلاه دستکش عروسک توپ تاکسی موتور کشتی هواپیما ساحل صدف ماهی نهنگ زرافه لاک‌پشت خرگوش جغد پروانه مورچه درخت آفتاب ابر رنگین‌کمان رعد آتشفشان غار رودخانه آبشار جزیره قلعه چاه قنات آسیاب کتری قابلمه قیچی چسب کاغذ پاک‌کن خودکار دفتر گچ لپ‌تاپ هدفون دوربین تلویزیون باتری چراغ‌قوه ساعت‌شنی تقویم پرچم جعبه قفل دیوار سقف پشت‌بام حیاط آشپزخانه نقاشی گیتار سنتور تنبک سینما تئاتر استادیوم داروخانه نانوایی کافه رستوران ایستگاه ترمینال بلیت چمدان ویترین بستنی شکلات پیتزا سوپ برنج زعفران پسته خرما".split(" "));
+const WA=uniq("آزادی حسادت شجاعت صبر ترس امید تنهایی دوستی اعتماد غرور شرم خشم آرامش عدالت سکوت زمان حافظه رؤیا موفقیت شکست انتظار عادت انگیزه کنجکاوی خلاقیت نظم بی‌حوصلگی دلتنگی خاطره سخاوت قدرت ثروت سادگی تغییر سنت پیشرفت رقابت همکاری مسئولیت احترام شهرت صداقت دروغ بخشش شانس سرنوشت انتخاب آینده گذشته کودکی پیری جوانی تعصب انصاف هوش یادگیری فراموشی تمرکز حواس‌پرتی اضطراب شادی غم سپاس توقع رضایت حسرت جسارت فروتنی تنبلی پشتکار قانون اخلاق هنر علم فرهنگ هویت وطن مرز سفر خانه".split(" "));
+const TW=[
+ {t:"سین ساده",i:["سارا سه سیب سرخ سرِ سفره گذاشت.","سه سگِ سفید سرِ سنگِ سیاه نشستند.","سوسن سی سبد سبزی سفارش داد.","سیصد و سی و سه سرباز سوار سی و سه اسب سیاه شدند."]},
+ {t:"سین چسبیده",i:["استاد دستش را به دستگیره‌ی سستِ در بست.","آستینِ آسترِ آسمانی‌اش در آسانسور گیر کرد.","اسکناس‌ها را در اسکله‌ی اسکندریه شمرد.","سپیده سپرِ سپید را به سپهر سپرد.","پسته‌ها را در پستوی پست‌خانه پس داد."]},
+ {t:"سین، شین، زِ",i:["سه سیر سیر و سی سیر سرکه.","شش سیخ جگر، سیخی شش هزار.","شش سوسکِ سیاه سه شیشه‌ی سس را شکستند.","سیزده سیبِ زرد و سی و سه سیبِ سبز.","سیروس سرِ ساعتِ شش سیم‌کشی را شروع کرد."]},
+ {t:"جمله‌ی بلند",i:["سعید سرِ ساعتِ سه، سیصد سبد سیبِ سرخ را به سوپرمارکتِ سرِ کوچه سپرد و سریع سوار سرویس شد.","سمیرا سه‌شنبه‌ها سرِ کلاسِ ساعتِ شش، سیصد سؤالِ ساده را سریع و بی‌سروصدا حل می‌کند."]}
+];
+const CATS=[
+ {n:"کلاس و آموزش",j:"روز اول تدریس، داستان و چشم‌های جمع‌شده",o:"اتم چیست · پاورپوینت تا ۴ صبح · خدا از اتم؟ · مواد مخدر برعکس · قلدر کلاس"},
+ {n:"یادگیری و تغییر خودم",j:"کارآفرین نبودم و یک دوره دیدم",o:"XP بدون معلم · کرونا و برگشتن · درون‌گرا و «امضا کن»"},
+ {n:"تکنولوژی و دنیای جدید",j:"قطع اینترنت اول جنگ",o:"گوشی لمسی · کلاس آنلاین ۸ و مدرسه ۶ · پیام مشتری · شیر آب به‌جای قنات"},
+ {n:"آدم‌ها و معنا",j:"استاد فرح‌نسب",o:"حسین در اردو · اژدها = پرنده + آتش"}
+];
+const PAIRS=[["سیر","شیر"],["سال","شال"],["سوت","شوت"],["سر","شر"],["سیب","شیب"],["سست","شست"],["سرد","زرد"],["سود","زود"],["سیر","زیر"]];
+const FW={
+ prep:{name:"PREP",steps:["ادعا","دلیل","مثال","ادعا"],think:"در ذهنت قفل کن: یک کلمه برای دلیل، یک کلمه برای مثال."},
+ mia:{name:"ماجرا، اهمیت، اقدام",steps:["موضوع چیه؟","چرا مهمه؟","حالا چی کار کنیم؟"],think:"در ذهنت قفل کن: چرا مهم است؟ قدم بعدی چیست؟"},
+ one:{name:"یک نکته (نون، چای، مربا، پنیر)",steps:["نون: یک نکته‌ی مهم این است که...","چای: چرا؟ چون...","مربا: مثلاً...","پنیر: پس..."],think:"نون و مربا را قفل کن: نکته در یک جمله، و فقط یک مثال."}
+};
+function plan(d){
+ const fw=d<=3?"prep":["prep","mia","one"][(d-1)%3];
+ if(d<=3)return{phase:"روزهای ۱ تا ۳ · ساختار پایه",think:30,speak:60,fw,title:"فقط PREP",rule:"هر جواب شروع، وسط و پایان واضح داشته باشد."};
+ if(d<=7)return{phase:"روزهای ۴ تا ۷ · چرخش چارچوب‌ها",think:20,speak:90,fw,title:"امروز: "+FW[fw].name,rule:"وقت فکر کمتر و صحبت بلندتر شد. امروز فقط با همین چارچوب جواب بده."};
+ if(d<=10)return{phase:"روزهای ۸ تا ۱۰ · مثال‌محور",think:10,speak:120,fw,title:"هر صحبت، یک مثال از انبار",rule:"در هر جواب یکی از مثال‌های انبارت را به سؤال وصل کن.",bank:true};
+ return{phase:"روزهای ۱۱ تا ۱۴ · زیر فشار",think:0,speak:150,fw,title:"دور مزاحمت",rule:"بی‌مکث شروع کن. وسط صحبت سؤال مزاحم می‌آید: در یک جمله بازگو کن، جواب بده، برگرد."+(d===14?" سؤال اول امروز همان سؤال روز ۱ است.":""),interrupt:true};
+}
+
+/* ---------- state ---------- */
+const LS="badahe-state-v1";
+const num=x=>{x=+x;return isFinite(x)&&x>=0?Math.round(x):0;};
+const arr=x=>Array.isArray(x)?x:[];
+const fobj=x=>{const o={em:0,yani:0,khob:0,other:0};if(x&&typeof x==="object")for(const k in o)o[k]=num(x[k]);return o;};
+const rlist=x=>arr(x).slice(0,12).map(r=>({q:String(r&&r.q||"").slice(0,200),secs:num(r&&r.secs)}));
+const blank=()=>({day:1,log:{},bank:[],used:[],rounds:{},done:{},baseQ:BASE,seeded:false});
+function norm(v){
+ const s=blank(); if(!v||typeof v!=="object")return s;
+ s.day=Math.min(14,Math.max(1,parseInt(v.day,10)||1));
+ const per=(o,fn)=>{if(o&&typeof o==="object"&&!Array.isArray(o))for(const k in o){const n=parseInt(k,10);if(n>=1&&n<=14&&o[k]&&typeof o[k]==="object")fn(n,o[k]);}};
+ per(v.log,(n,L)=>{s.log[n]={fw:String(L.fw||""),f:fobj(L.f),total:num(L.total),secs:num(L.secs),note:String(L.note||"").slice(0,300),live:!!L.live,date:String(L.date||"").slice(0,10),rounds:rlist(L.rounds)};});
+ per(v.rounds,(n,R)=>{s.rounds[n]=rlist(R);});
+ per(v.done,(n,D)=>{s.done[n]={w:!!D.w,a:!!D.a,b:!!D.b};});
+ s.bank=arr(v.bank).filter(b=>b&&typeof b.text==="string"&&b.text.trim()).slice(0,200).map(b=>({id:String(b.id||Math.random().toString(36).slice(2)),text:b.text.slice(0,400)}));
+ s.used=uniq(arr(v.used).filter(x=>typeof x==="string"));
+ if(typeof v.baseQ==="string"&&v.baseQ)s.baseQ=v.baseQ.slice(0,200);
+ s.seeded=!!v.seeded;
+ return s;
+}
+function seed(){if(S.seeded)return false;S.used=uniq([...S.used,...PRE_USED]);S.seeded=true;return true;}
+let S=blank();
+try{S=norm(JSON.parse(localStorage.getItem(LS)||"null"));}catch(e){}
+if(seed())saveLocal();
+let ref=null,writing=Promise.resolve();
+function saveLocal(){try{localStorage.setItem(LS,JSON.stringify(S));}catch(e){}}
+function persist(){
+ saveLocal();
+ if(ref){const snap=JSON.parse(JSON.stringify(S));writing=writing.then(()=>ref.set(snap)).catch(e=>{if(e&&e.code==="invalid_argument"){ref=null;setSync(false);}toast("ذخیره در حساب نشد؛ در همین مرورگر ماند");});}
+}
+function setSync(on){$("#syncTxt").textContent=on?"داده‌ها در حساب شما ذخیره می‌شوند و روی همه‌ی دستگاه‌ها یکی‌اند.":"داده‌ها فقط در همین مرورگر ذخیره می‌شوند. برای انتقال به دستگاه دیگر، پشتیبان را کپی کن و آن‌جا بازگردانی کن.";}
+setSync(false);
+(async()=>{try{
+ if(!window.claude||typeof claude.use!=="function")return;
+ const [d,u]=await Promise.all([claude.use("db"),claude.use("user")]);
+ if(!d||!u)return; const id=await u.id(); if(!id)return;
+ ref=d.doc("data/users/"+id+"/state");
+ let first=true; const tm=setTimeout(()=>{if(first)toast("حساب در دسترس نیست؛ فعلاً در همین مرورگر");},10000);
+ ref.onSnapshot(snap=>{
+  if(snap.metadata.hasPendingWrites)return;
+  if(!snap.metadata.fromCache)clearTimeout(tm);
+  if(snap.exists){S=norm(snap.data());if(seed())persist();else saveLocal();renderAll();}
+  else if(first&&!snap.metadata.fromCache){persist();}
+  if(first&&!snap.metadata.fromCache){first=false;setSync(true);}
+ },()=>{clearTimeout(tm);ref=null;setSync(false);});
+}catch(e){}})();
+
+/* ---------- utilities ---------- */
+let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("show"),2200);}
+let actx;function beep(f=880,ms=160){try{actx=actx||new(window.AudioContext||window.webkitAudioContext)();const o=actx.createOscillator(),g=actx.createGain();o.frequency.value=f;o.connect(g);g.connect(actx.destination);g.gain.setValueAtTime(.16,actx.currentTime);g.gain.exponentialRampToValueAtTime(.001,actx.currentTime+ms/1000);o.start();o.stop(actx.currentTime+ms/1000);}catch(e){}}
+let lock=null;async function wake(on){try{if(on&&!lock&&navigator.wakeLock)lock=await navigator.wakeLock.request("screen");else if(!on&&lock){await lock.release();lock=null;}}catch(e){lock=null;}}
+function countdown(secs,tick,done){const t0=Date.now();tick(secs);const iv=setInterval(()=>{const left=secs-Math.floor((Date.now()-t0)/1000);tick(Math.max(0,left));if(left<=0){clearInterval(iv);done&&done();}},250);return()=>clearInterval(iv);}
+async function copyText(text,ta){try{await navigator.clipboard.writeText(text);ta.hidden=true;toast("کپی شد");}catch(e){ta.hidden=false;ta.value=text;ta.focus();ta.select();toast("متن انتخاب شد؛ خودت کپی کن");}}
+const dayDone=d=>S.done[d]||(S.done[d]={w:false,a:false,b:false});
+const roundsOf=d=>S.rounds[d]||[];
+
+/* ---------- sheets ---------- */
+let openSheetEl=null,lastFocus=null;
+function openSheet(id){
+ closeSheet(true);
+ if(id==="focus"){openFocus();return;}
+ const el=$("#sh-"+id); if(!el)return;
+ lastFocus=document.activeElement;
+ if(id==="review")prepReview(); if(id==="bankq")$("#bqN").textContent="تا الان "+fa(S.bank.length)+" مثال داری.";
+ $("#scrim").hidden=false; el.hidden=false; openSheetEl=el; document.body.classList.add("lock");
+ const f=el.querySelector("[data-close]"); f&&f.focus({preventScroll:true});
+}
+function closeSheet(silent){
+ if(!openSheetEl)return; openSheetEl.hidden=true; openSheetEl=null; $("#scrim").hidden=true; document.body.classList.remove("lock");
+ stopMini(); if(!silent&&lastFocus)lastFocus.focus({preventScroll:true});
+}
+$("#scrim").onclick=()=>closeSheet();
+$$("[data-close]").forEach(b=>b.onclick=()=>closeSheet());
+$$("[data-open]").forEach(b=>b.onclick=()=>openSheet(b.dataset.open));
+document.addEventListener("keydown",e=>{if(e.key!=="Escape")return;if(!$("#focus").hidden)closeFocus();else closeSheet();});
+
+/* ---------- warm-up & agility ---------- */
+let stage=0,s60=null,s30=null;
+function stopMini(){s60&&s60();s30&&s30();s60=s30=null;$("#c60").textContent="";$("#c30").textContent="";}
+const wordPool=()=>S.day>=8?[...WC,...WA,...WA]:WC;
+function newWord(){$("#rWord").textContent=pick(wordPool());}
+function newPair(){const p=wordPool();let a=pick(p),b;do{b=pick(p);}while(b===a);$("#pA").textContent=a;$("#pB").textContent=b;}
+function renderTw(){
+ $("#twSeg").innerHTML=TW.map((s,i)=>'<button aria-pressed="'+(i===stage)+'" data-s="'+i+'">'+fa(i+1)+" · "+esc(s.t)+"</button>").join("");
+ $$("#twSeg button").forEach(b=>b.onclick=()=>{stage=+b.dataset.s;renderTw();});
+ $("#twList").innerHTML=TW[stage].i.map(x=>"<li>"+esc(x)+"</li>").join("");
+ $("#pairList").innerHTML=PAIRS.map(p=>"<span>"+p[0]+" / "+p[1]+"</span>").join("");
+}
+$("#twAll").innerHTML=TW.map((s,i)=>"<h3>"+fa(i+1)+". "+esc(s.t)+'</h3><ol class="tw">'+s.i.map(x=>"<li>"+esc(x)+"</li>").join("")+"</ol>").join("")+'<h3>جفت‌های تمایز</h3><div class="pairs">'+PAIRS.map(p=>"<span>"+p[0]+" / "+p[1]+"</span>").join("")+'</div><p class="small muted">اگر سینت همیشه یک‌جور خاص درمی‌آید (شبیه «ث» انگلیسی یا با سوت)، چند جلسه گفتاردرمانی سریع‌تر جواب می‌دهد.</p>';
+$("#wNew").onclick=newWord; $("#pNew").onclick=newPair;
+$("#w60").onclick=()=>{s60&&s60();beep(660);s60=countdown(60,l=>$("#c60").textContent=mmss(l),()=>{beep(990,300);$("#c60").textContent="تمام";newWord();});};
+$("#p30").onclick=()=>{s30&&s30();beep(660);s30=countdown(30,l=>$("#c30").textContent=mmss(l),()=>{beep(990,300);$("#c30").textContent="تمام";newPair();});};
+$("#warmDone").onclick=()=>{dayDone(S.day).w=true;persist();closeSheet();renderToday();toast("گرم کردن ثبت شد");};
+$("#agilDone").onclick=()=>{dayDone(S.day).a=true;persist();closeSheet();renderToday();toast("چابکی ذهن ثبت شد");};
+
+/* ---------- questions ---------- */
+function nextQ(cur){
+ const d=S.day,p=plan(d),R=roundsOf(d);
+ if(d===14&&!R.some(r=>r.q===S.baseQ)&&cur!==S.baseQ)return S.baseQ;
+ const lists=p.fw==="prep"?[OP,ST]:p.fw==="mia"?[EX]:[OP,EX,ST];
+ const all=[...OP,...EX,...ST];
+ const half=a=>a.slice(Math.floor(a.length/2));
+ const ok=q=>q!==cur&&!S.used.includes(q);
+ let c=lists.flatMap(a=>d>=11?half(a):a).filter(ok);
+ if(!c.length)c=all.filter(ok);
+ if(!c.length)c=all.filter(q=>q!==cur);
+ return pick(c);
+}
+
+/* ---------- focus stage ---------- */
+const C=2*Math.PI*118;$("#fArc").style.strokeDasharray=C;
+const F={phase:"idle",q:"",iv:null,t0:0,cue:false,intr:false,last:0};
+function setRing(frac){$("#fArc").style.strokeDashoffset=C*(1-Math.max(0,Math.min(1,frac)));}
+function openFocus(){
+ const R=roundsOf(S.day); if(!F.q||F.phase!=="idle")F.q=nextQ(); F.phase=R.length>=4?"full":"idle";
+ lastFocus=document.activeElement; $("#focus").hidden=false; document.body.classList.add("lock"); renderFocus(); $("#fPri").focus({preventScroll:true}); N.focus(true);
+}
+function closeFocus(){cancelRound();N.focus(false);$("#focus").hidden=true;document.body.classList.remove("lock");renderToday();lastFocus&&lastFocus.focus({preventScroll:true});}
+function clearIv(){clearInterval(F.iv);F.iv=null;}
+function cancelRound(){if(F.phase==="think"||F.phase==="speak"){clearIv();F.phase="idle";wake(false);N.cancel();}}
+function startRound(){
+ const p=plan(S.day); F.cue=false; F.intr=false; wake(true);
+ if(p.think>0){F.phase="think";F.t0=Date.now();beep(660);
+  F.iv=setInterval(()=>{const left=p.think-(Date.now()-F.t0)/1000;setRing(left/p.think);$("#fT").textContent=mmss(Math.ceil(left));if(left<=0){clearIv();startSpeak();}},200);
+  setRing(1);$("#fT").textContent=mmss(p.think);
+ }else{startSpeak();return;}
+ renderFocus();
+}
+function startSpeak(){
+ const p=plan(S.day); N.speak(roundsOf(S.day).length+1); clearIv(); F.phase="speak"; F.t0=Date.now(); beep(880,260); renderFocus();
+ const fo=$("#focus");
+ F.iv=setInterval(()=>{
+  const el=(Date.now()-F.t0)/1000,left=p.speak-el;
+  if(left>0){setRing(left/p.speak);$("#fT").textContent=mmss(Math.ceil(left));fo.classList.toggle("last",left<=10);$("#fCue").hidden=left>10;if(left<=10&&!F.cue){F.cue=true;beep(740,200);}}
+  else{fo.classList.remove("last");fo.classList.add("over");setRing(1);$("#fT").textContent="+"+mmss(-left);$("#fLbl").textContent="وقت اضافه";$("#fCue").hidden=false;}
+  if(p.interrupt&&!F.intr&&el>=p.speak*.45){F.intr=true;const b=$("#fIntr");b.innerHTML="<b>"+esc(N.intr(pick(INTR),el))+"</b><span class='small'>اول در یک جمله بازگو کن («یعنی می‌پرسی...»)، جواب بده، برگرد سر حرفت.</span>";b.hidden=false;beep(520,380);}
+  if(left<=-180)endRound();
+ },200);
+}
+function endRound(){
+ if(F.phase!=="speak")return; clearIv();
+ const secs=Math.round((Date.now()-F.t0)/1000); beep(990,320); wake(false);
+ const d=S.day;(S.rounds[d]=S.rounds[d]||[]).push({q:F.q,secs});
+ if(!S.used.includes(F.q))S.used.push(F.q);
+ N.end(d,F.q,secs); persist(); F.last=secs; F.phase="done"; renderFocus();
+}
+function renderFocus(){
+ const d=S.day,p=plan(d),R=roundsOf(d),fo=$("#focus");
+ fo.dataset.phase=F.phase==="full"?"done":F.phase;
+ if(F.phase!=="speak")fo.classList.remove("last","over");
+ const n=Math.min(4,R.length+(F.phase==="done"||F.phase==="full"?0:1));
+ $("#fRound").textContent=F.phase==="full"?"۴ دور انجام شد":"دور "+fa(Math.max(1,n))+" از ۴";
+ $("#fDots").innerHTML=[0,1,2,3].map(i=>'<i class="'+(i<R.length?"on":"")+'"></i>').join("");
+ $("#fQ").textContent=F.phase==="full"?"امروز چهار دور را کامل کردی.":F.q;
+ $("#fBase").hidden=!(d===14&&F.q===S.baseQ&&F.phase!=="full");
+ if(F.phase!=="speak"){$("#fCue").hidden=true;$("#fIntr").hidden=true;}
+ const air={idle:"آماده",think:"فکر",speak:"ON AIR",done:"ثبت شد",full:"تمام"}[F.phase];
+ $("#fAir").textContent=air;
+ const hint=$("#fHint"),steps=$("#fSteps"),bank=$("#fBank");
+ steps.innerHTML=(F.phase==="speak"||F.phase==="idle")?FW[p.fw].steps.map(s=>"<span>"+esc(s)+"</span>").join(""):"";
+ const showCats=!!((p.bank||p.interrupt)&&(F.phase==="idle"||F.phase==="think"));
+ bank.hidden=!showCats;fo.classList.toggle("cats",showCats);
+ if(showCats&&!bank.dataset.r){bank.dataset.r="1";bank.innerHTML='<div class="g">'+CATS.map(c=>'<div class="c"><b>'+esc(c.n)+'</b><span>⭐ '+esc(c.j)+'</span></div>').join("")+'</div><span class="fb">هیچی نیامد؟ «سر کلاس خودم…» + جوکر کلاس</span>';}
+ const pri=$("#fPri"),sec=$("#fSec"); sec.hidden=false;
+ if(F.phase==="idle"){setRing(1);$("#fT").textContent=mmss(p.think||p.speak);$("#fLbl").textContent=p.think?"وقت فکر":"بی‌مکث شروع کن";hint.textContent="ضبط خودکار است؛ شروع را بزن.";pri.textContent="شروع";sec.textContent="سؤال دیگر";}
+ else if(F.phase==="think"){$("#fLbl").textContent="وقت فکر";hint.textContent=p.bank?"۰ تا ۳ ← ادعا\n۳ تا ۷ ← دسته و جوکر\n۷ تا ۱۰ ← جمله‌ی اول":FW[p.fw].think;pri.textContent="الان شروع می‌کنم";sec.textContent="لغو";}
+ else if(F.phase==="speak"){setRing(1);$("#fT").textContent=mmss(p.speak);$("#fLbl").textContent="صحبت کن";hint.textContent="تپق زدی؟ نایست، برو جمله‌ی بعد.";pri.textContent="تمام کردم";sec.textContent="لغو";}
+ else if(F.phase==="done"){setRing(0);$("#fT").textContent=mmss(F.last);$("#fLbl").textContent="مدت این دور";hint.textContent=F.last>p.speak+5?"این دور "+fa(F.last-p.speak)+" ثانیه از وقتش بیشتر شد.":"در وقتش تمام شد.";pri.textContent=R.length>=4?"برو به بازبینی":"دور بعد";sec.textContent="بستن";}
+ else{setRing(0);$("#fT").textContent="✓";$("#fLbl").textContent="";hint.textContent="حالا بدترین ضبط را گوش بده و بازبینی کن.";pri.textContent="برو به بازبینی";sec.textContent="یک دور اضافه";}
+}
+$("#fPri").onclick=()=>{
+ const R=roundsOf(S.day);
+ if(F.phase==="idle")N.pre(startRound);
+ else if(F.phase==="think")startSpeak();
+ else if(F.phase==="speak")endRound();
+ else if(F.phase==="done"&&R.length<4){F.q=nextQ(F.q);F.phase="idle";renderFocus();}
+ else{closeFocus();openSheet("review");}
+};
+$("#fSec").onclick=()=>{
+ if(F.phase==="idle"){F.q=nextQ(F.q);renderFocus();}
+ else if(F.phase==="think"||F.phase==="speak"){cancelRound();renderFocus();toast("این دور ثبت نشد");}
+ else if(F.phase==="full"){F.q=nextQ(F.q);F.phase="idle";renderFocus();}
+ else closeFocus();
+};
+$("#fClose").onclick=closeFocus;
+$("#cta").onclick=()=>openSheet("focus");
+
+/* ---------- review ---------- */
+let fill=fobj(),selRound=-1;
+function prepReview(){
+ const d=S.day,L=S.log[d],R=roundsOf(d).length?roundsOf(d):(L?L.rounds:[]);
+ $("#t-review").textContent="بازبینی روز "+fa(d);
+ fill=L?fobj(L.f):fobj(); selRound=-1;
+ $("#rvSecs").value=L&&L.secs?L.secs:"";
+ $("#rvNote").value=L?L.note:""; $("#rvLive").checked=!!(L&&L.live);
+ const box=$("#rvRounds");
+ box.innerHTML=R.length?R.map((r,i)=>'<button aria-pressed="false" data-i="'+i+'" title="'+esc(r.q)+'">دور '+fa(i+1)+" · "+mmss(r.secs)+"</button>").join(""):'<span class="small muted">دوری با تایمر ثبت نشده؛ مدت را دستی بنویس.</span>';
+ $$("#rvRounds button").forEach(b=>b.onclick=()=>{selRound=+b.dataset.i;$$("#rvRounds button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));$("#rvSecs").value=R[selRound].secs;renderFill();});
+ $("#rvForm").hidden=false;$("#rvDone").hidden=true;$("#rvCopyTxt").hidden=true;
+ renderFill(); N.review();
+}
+function tot(){return fill.em+fill.yani+fill.khob+fill.other;}
+function renderFill(){
+ $$(".fill").forEach(b=>b.querySelector("b").textContent=fa(fill[b.dataset.k]));
+ $("#rvTot").textContent=fa(tot());
+ const s=num($("#rvSecs").value);$("#rvFpm").textContent=s>0?fa1(tot()/(s/60)):"—";
+}
+$$(".fill").forEach(b=>b.onclick=()=>{fill[b.dataset.k]++;renderFill();});
+$("#rvSecs").oninput=renderFill;
+$("#rvZero").onclick=()=>{fill=fobj();renderFill();};
+$("#rvSave").onclick=()=>{
+ const d=S.day,p=plan(d),R=roundsOf(d).length?roundsOf(d):(S.log[d]?S.log[d].rounds:[]);
+ S.log[d]={fw:p.fw,f:Object.assign({},fill),total:tot(),secs:Math.min(900,num($("#rvSecs").value)),note:$("#rvNote").value.trim().slice(0,300),live:$("#rvLive").checked,date:new Date().toISOString().slice(0,10),rounds:R.slice()};
+ persist(); renderAll();
+ $("#rvForm").hidden=true;$("#rvDone").hidden=false;$("#rvDoneT").textContent="روز "+fa(d)+" ثبت شد";
+ $("#rvNext").hidden=d>=14;
+};
+$("#rvEdit").onclick=prepReview;
+function summary(d){
+ const L=S.log[d],R=L&&L.rounds.length?L.rounds:roundsOf(d),p=plan(d);
+ let t="روز "+fa(d)+" · "+FW[p.fw].name+"\n";
+ if(R.length)t+="سؤال‌ها:\n"+R.map((r,i)=>fa(i+1)+". "+r.q+" ("+mmss(r.secs)+")").join("\n")+"\n";
+ if(L){t+="پرکننده: "+fa(L.total);if(L.secs)t+=" در "+mmss(L.secs)+" ← "+fa1(L.total/(L.secs/60))+" در دقیقه";t+="\n";if(L.note)t+="برای فردا: "+L.note+"\n";if(L.live)t+="جلوی آدم واقعی هم حرف زدم.\n";}
+ return t.trim();
+}
+$("#rvCopy").onclick=()=>copyText(summary(S.day),$("#rvCopyTxt"));
+$("#rvNext").onclick=()=>{closeSheet();setDay(S.day+1);window.scrollTo(0,0);};
+
+/* ---------- bank ---------- */
+function addBank(text){text=text.trim();if(!text)return false;S.bank.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),text:text.slice(0,400)});dayDone(S.day).b=true;persist();renderAll();toast("به انبار اضافه شد");return true;}
+$("#bankAdd").onclick=()=>{if(addBank($("#bankIn").value))$("#bankIn").value="";};
+$("#bankIn").onkeydown=e=>{if(e.key==="Enter")$("#bankAdd").click();};
+$("#bqAdd").onclick=()=>{if(addBank($("#bqIn").value)){$("#bqIn").value="";closeSheet();}};
+$("#bqIn").onkeydown=e=>{if(e.key==="Enter")$("#bqAdd").click();};
+function renderBank(){
+ const C=$("#catList");if(!C.dataset.r){C.dataset.r="1";C.innerHTML=CATS.map(c=>'<div class="cat"><h3>'+esc(c.n)+'</h3><span class="j">⭐ '+esc(c.j)+'</span><p>'+esc(c.o)+'</p></div>').join("");}
+ const n=S.bank.length;$("#bankN").textContent=fa(n)+" از ۱۵";$("#bankM").style.width=Math.min(100,n/15*100)+"%";
+ const L=$("#bankList");L.innerHTML="";
+ if(!n){L.innerHTML='<div class="empty">هنوز مثالی نداری. مثال‌های روز ۳ را اضافه کن: «من از اول کارآفرین نبودم» و «ساعت هشت برای کلاس آنلاین، ساعت شش برای مدرسه».</div>';return;}
+ S.bank.forEach((it,i)=>{const r=document.createElement("div");r.className="bi";
+  const nn=document.createElement("span");nn.className="n";nn.textContent=fa(i+1);
+  const p=document.createElement("p");p.textContent=it.text;
+  const x=document.createElement("button");x.className="btn ghost sm";x.textContent="حذف";x.setAttribute("aria-label","حذف مثال "+fa(i+1));
+  x.onclick=()=>{if(x.dataset.c){S.bank=S.bank.filter(b=>b.id!==it.id);persist();renderAll();}else{x.dataset.c="1";x.textContent="مطمئنی؟";setTimeout(()=>{if(x.isConnected){delete x.dataset.c;x.textContent="حذف";}},3000);}};
+  r.append(nn,p,x);L.appendChild(r);});
+}
+
+/* ---------- today ---------- */
+function setDay(d){d=Math.min(14,Math.max(1,d));if(d===S.day)return;S.day=d;F.q="";F.phase="idle";persist();renderAll();}
+$("#dPrev").onclick=()=>setDay(S.day-1);
+$("#dNext").onclick=()=>setDay(S.day+1);
+function renderToday(){
+ const d=S.day,p=plan(d),R=roundsOf(d),D=S.done[d]||{};
+ $("#hDay").textContent=fa(d);$("#hPhase").textContent=p.phase;$("#hTitle").textContent=p.title;
+ $("#hThink").textContent=secTxt(p.think);$("#hSpeak").textContent=secTxt(p.speak);$("#hFw").textContent=FW[p.fw].name;$("#hRule").textContent=p.rule;
+ $("#hNew").hidden=!([4,8,11].includes(d)&&!S.log[d]);
+ $("#dPrev").disabled=d<=1;$("#dNext").disabled=d>=14;
+ const tr=$("#track");tr.innerHTML="";
+ for(let i=1;i<=14;i++){const b=document.createElement("button");b.setAttribute("aria-label","روز "+fa(i));b.className=i===d?"cur":S.log[i]?"done":"";b.onclick=()=>setDay(i);tr.appendChild(b);}
+ $("#ctaT").textContent=R.length>=4?"تمرین اصلی کامل شد":R.length?"ادامه‌ی تمرین اصلی":"شروع تمرین اصلی";
+ $("#ctaS").textContent=R.length>=4?"حالا برو سراغ بازبینی":"دور "+fa(R.length+1)+" از ۴ · فکر "+secTxt(p.think)+" · صحبت "+secTxt(p.speak);
+ $("#ctaDots").innerHTML=[0,1,2,3].map(i=>'<i class="'+(i<R.length?"on":"")+'"></i>').join("");
+ $("#mainMeta").textContent=R.length&&R.length<4?fa(R.length)+" از ۴":"۱۲ دقیقه";
+ const st={w:!!D.w,a:!!D.a,m:R.length>=4,r:!!S.log[d],b:!!D.b};
+ $$("[data-st]").forEach(c=>{const on=st[c.dataset.st];c.classList.toggle("on",on);c.innerHTML=on?'<svg class="i" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>':"";});
+ N.today();
+}
+
+/* ---------- progress ---------- */
+const fpmOf=L=>L&&L.secs>0?L.total/(L.secs/60):null;
+function renderProgress(){
+ let done=0;const vals=[];for(let i=1;i<=14;i++){if(S.log[i])done++;vals.push(fpmOf(S.log[i]));}
+ $("#tDone").textContent=fa(done);
+ let li=-1;vals.forEach((v,i)=>{if(v!=null)li=i;});
+ if(li>=0){$("#tLast").textContent=fa1(vals[li]);$("#tLastD").textContent="روز "+fa(li+1);}else{$("#tLast").textContent="—";$("#tLastD").textContent="هنوز مدتی ثبت نشده";}
+ const v1=vals[0],dl=$("#tDelta");
+ if(v1&&li>0){const pct=Math.round((vals[li]-v1)/v1*100);dl.textContent=(pct>0?"+":"−")+fa(Math.abs(pct))+"٪";dl.className=pct<=0?"good":"bad";$("#tDeltaS").textContent="روز ۱ ← روز "+fa(li+1);}
+ else{dl.textContent="—";dl.className="";$("#tDeltaS").textContent=v1?"کمتر بهتر است":"مدت روز ۱ را ثبت کن";}
+ const g=$("#days");g.innerHTML="";
+ for(let i=1;i<=14;i++){const L=S.log[i],c=document.createElement("button");c.className="dc"+(L?" done":"")+(i===S.day?" cur":"");
+  const v=fpmOf(L);c.innerHTML="<b>"+fa(i)+"</b><span>"+(v!=null?fa1(v):L?"ثبت":i===S.day?"امروز":"—")+"</span>";
+  c.setAttribute("aria-label","روز "+fa(i));c.onclick=()=>{setDay(i);location.hash="today";};g.appendChild(c);}
+ const W=560,H=190,pr=30,pb=24,bw=(W-pr)/14,have=vals.filter(v=>v!=null);
+ if(!have.length){$("#chart").innerHTML='<div class="empty">بعد از ثبت اولین روز با مدت صحبت، نمودار این‌جا ساخته می‌شود.</div>';}
+ else{
+  const mx=Math.max(5,...have),step=mx<=10?2:mx<=25?5:10,top=Math.ceil(mx/step)*step;
+  let s='<svg viewBox="0 0 '+W+" "+H+'" role="img" aria-label="پرکننده در دقیقه در ۱۴ روز">';
+  for(let v=0;v<=top;v+=step){const y=H-pb-(H-pb-12)*v/top;s+='<line class="gl" x1="0" x2="'+(W-pr)+'" y1="'+y+'" y2="'+y+'"/><text x="'+(W-pr+6)+'" y="'+(y+4)+'">'+fa(v)+"</text>";}
+  vals.forEach((v,i)=>{const x=W-pr-(i+1)*bw+bw*.22;s+='<text x="'+(x+bw*.28)+'" y="'+(H-6)+'" text-anchor="middle">'+fa(i+1)+"</text>";
+   if(v!=null){const h=(H-pb-12)*v/top;s+='<rect class="bar'+(i===li?" last":"")+'" x="'+x+'" y="'+(H-pb-h)+'" width="'+(bw*.56)+'" height="'+Math.max(h,2)+'" rx="5"><title>روز '+fa(i+1)+": "+fa1(v)+"</title></rect>";}});
+  $("#chart").innerHTML=s+"</svg>";
+ }
+ const LL=$("#logList");LL.innerHTML="";
+ const keys=Object.keys(S.log).map(Number).sort((a,b)=>a-b);
+ if(!keys.length){LL.innerHTML='<div class="empty">هنوز روزی ثبت نشده.</div>';return;}
+ keys.forEach(k=>{const L=S.log[k],r=document.createElement("div");r.className="logi";
+  const d=document.createElement("div");d.className="d";d.textContent=fa(k);
+  const b=document.createElement("div");const chips=document.createElement("div");chips.className="row";chips.style.gap="6px";
+  const v=fpmOf(L);[FW[L.fw]?FW[L.fw].name:"",fa(L.total)+" پرکننده",v!=null?fa1(v)+" در دقیقه":"مدت ثبت نشده",L.live?"جلوی آدم واقعی":""].filter(Boolean).forEach(t=>{const c=document.createElement("span");c.className="chip";c.textContent=t;chips.appendChild(c);});
+  b.appendChild(chips);
+  if(L.note){const p=document.createElement("p");p.className="small";p.style.marginTop="6px";p.textContent="برای فردا: "+L.note;b.appendChild(p);}
+  if(L.rounds.length){const ol=document.createElement("ol");L.rounds.forEach(x=>{const li=document.createElement("li");li.textContent=x.q+" ("+mmss(x.secs)+")";ol.appendChild(li);});b.appendChild(ol);}
+  r.append(d,b);LL.appendChild(r);});
+}
+
+/* ---------- backup ---------- */
+$("#expBtn").onclick=()=>copyText(JSON.stringify(S),$("#expTxt"));
+$("#impOpen").onclick=()=>{$("#impBox").hidden=!$("#impBox").hidden;$("#impMsg").textContent="";};
+$("#impBtn").onclick=()=>{
+ const b=$("#impBtn");let v;
+ try{v=JSON.parse($("#impTxt").value);}catch(e){$("#impMsg").textContent="این متن پشتیبان معتبر نیست. کل متن کپی‌شده را بچسبان.";return;}
+ if(!v||typeof v!=="object"||!("log" in v)){$("#impMsg").textContent="این متن پشتیبان این اپ نیست.";return;}
+ if(!b.dataset.c){b.dataset.c="1";b.textContent="جایگزین شود؟";$("#impMsg").textContent="داده‌های فعلی این دستگاه با پشتیبان جایگزین می‌شود.";setTimeout(()=>{if(b.isConnected){delete b.dataset.c;b.textContent="بازگردانی";}},4000);return;}
+ delete b.dataset.c;b.textContent="بازگردانی";S=norm(v);seed();persist();renderAll();$("#impTxt").value="";$("#impBox").hidden=true;toast("بازگردانی شد");
+};
+
+/* ---------- routing ---------- */
+const VIEWS=["today","toolbox","progress","bank"];
+function route(){const h=location.hash.slice(1),v=VIEWS.includes(h)?h:"today";VIEWS.forEach(n=>$("#v-"+n).hidden=n!==v);$$(".tabbar a").forEach(a=>a.dataset.v===v?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current"));}
+window.addEventListener("hashchange",()=>{closeSheet(true);route();window.scrollTo(0,0);});
+
+function renderAll(){renderToday();renderProgress();renderBank();if(!$("#focus").hidden)renderFocus();}
+renderTw();newWord();newPair();renderAll();route();
+N.bind({S:()=>S,F,plan,FW,fa,mmss,esc,toast,roundsOf,closeFocus,closeSheet,sheet:()=>openSheetEl,focusOpen:()=>!$("#focus").hidden,renderToday});
+
+/* self-check: content sanity */
+console.assert(PRE_USED.every(q=>[...OP,...EX,...ST].includes(q)),"PRE_USED must exist in question lists");
+console.assert(norm({day:99,log:{1:{total:"5",secs:-3}},bank:[{text:"x"}]}).day===14,"norm clamps day");
+})();
+</script>
+
+</body></html>
