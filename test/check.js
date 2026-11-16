@@ -23,7 +23,7 @@ const MOCK = mic => `(() => {
     install: () => ({ ok: true })
   };
   window.Capacitor = { isNativePlatform: () => true, convertFileSrc: p => "file://" + p,
-    registerPlugin: () => new Proxy({}, { get: (_, m) => async a => { window.__calls.push([m, a]); return impl[m](a); } }) };
+    Plugins: { Badahe: new Proxy({}, { get: (_, m) => async a => { window.__calls.push([m, a]); return impl[m](a); } }) } };
 })();`;
 
 const names = p => p.evaluate(() => window.__calls.map(c => c[0]));

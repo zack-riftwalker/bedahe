@@ -2,8 +2,11 @@
 (function () {
 "use strict";
 const cap = window.Capacitor;
-const native = !!(cap && cap.isNativePlatform && cap.isNativePlatform());
-const P = native ? cap.registerPlugin("Badahe") : null;
+// Native plugins appear as Capacitor.Plugins.<name>; never let a missing one break the page.
+let P = null;
+try { if (cap && cap.isNativePlatform && cap.isNativePlatform()) P = (cap.Plugins && cap.Plugins.Badahe) || (cap.registerPlugin && cap.registerPlugin("Badahe")) || null; } catch (e) {}
+const native = !!P;
+const fileUrl = p => (cap.convertFileSrc ? cap.convertFileSrc(p) : location.origin + "/_capacitor_file_" + p);
 const REC = "badahe-rec-v1";
 const API = "https://api.github.com/repos/zack-riftwalker/bedahe/releases/latest";
 const TAG = { prep: "PREP", mia: "MAHAGH", one: "ONE" };
@@ -75,7 +78,7 @@ function play(i) {
   stopAudio();
   if (was !== i) {
     audio = audio || new Audio(); audio.preload = "none";
-    audio.src = cap.convertFileSrc(files[key(d, i)]);
+    audio.src = fileUrl(files[key(d, i)]);
     audio.onended = () => { playing = -1; renderRev(); };
     audio.play().catch(() => { playing = -1; X.toast("پخش نشد"); renderRev(); });
     playing = i;
