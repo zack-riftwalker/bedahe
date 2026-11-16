@@ -4,6 +4,8 @@ const { execFileSync } = require("child_process");
 const fs = require("fs");
 const PKG = "com.badahe.app";
 let fails = 0;
+setInterval(() => {}, 1000); // keep the event loop alive while a WebSocket connects
+process.on("exit", c => console.log("exit code " + c));
 const ok = (c, m) => { console.log((c ? "PASS " : "FAIL ") + m); if (!c) fails++; };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const adb = (...a) => { try { return execFileSync("adb", a, { encoding: "utf8", maxBuffer: 1 << 26 }); } catch (e) { return ""; } };
@@ -15,6 +17,7 @@ const shot = n => { try { fs.writeFileSync("shots/" + n + ".png", execFileSync("
 /* ---------- CDP ---------- */
 let ws, seq = 0; const pend = new Map();
 async function attach() {
+  console.log("attaching to WebView");
   let pid = "";
   for (let i = 0; i < 60 && !pid; i++) { await sleep(1000); pid = sh("pidof " + PKG).trim().split(/\s+/)[0]; }
   let sock = "";
@@ -25,6 +28,7 @@ async function attach() {
     try { page = (await (await fetch("http://127.0.0.1:9222/json")).json()).find(t => t.type === "page"); } catch (e) {}
     if (!page) await sleep(1000);
   }
+  console.log("devtools page:", page.url);
   ws = new WebSocket(page.webSocketDebuggerUrl);
   await new Promise((r, j) => { ws.onopen = r; ws.onerror = j; });
   ws.onmessage = e => { const m = JSON.parse(e.data); if (pend.has(m.id)) { pend.get(m.id)(m); pend.delete(m.id); } };
