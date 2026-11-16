@@ -31,7 +31,14 @@ async function attach() {
   console.log("devtools page:", page.url);
   ws = new WebSocket(page.webSocketDebuggerUrl);
   await new Promise((r, j) => { ws.onopen = r; ws.onerror = j; });
-  ws.onmessage = e => { const m = JSON.parse(e.data); if (pend.has(m.id)) { pend.get(m.id)(m); pend.delete(m.id); } };
+  ws.onmessage = e => {
+    const m = JSON.parse(e.data);
+    if (pend.has(m.id)) { pend.get(m.id)(m); pend.delete(m.id); }
+    else if (m.method === "Runtime.consoleAPICalled") console.log("PAGE console." + m.params.type + ": " + m.params.args.map(a => a.value || a.description).join(" "));
+    else if (m.method === "Runtime.exceptionThrown") console.log("PAGE exception: " + JSON.stringify(m.params.exceptionDetails.exception || m.params.exceptionDetails.text));
+  };
+  ws.send(JSON.stringify({ id: ++seq, method: "Runtime.enable" }));
+  console.log("probe:", await ev("JSON.stringify({rs:document.readyState,cap:typeof Capacitor,n:typeof N,url:location.href,body:document.body&&document.body.innerHTML.length})").catch(e => String(e)));
   await until("typeof window.N==='object'&&document.readyState==='complete'", 60000);
 }
 const ev = expr => new Promise((res, rej) => {
