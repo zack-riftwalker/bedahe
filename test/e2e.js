@@ -3,12 +3,13 @@
 const { execFileSync } = require("child_process");
 const fs = require("fs");
 const PKG = "com.badahe.app";
+setTimeout(() => { console.log("FAIL watchdog: e2e took over 12 minutes"); process.exit(1); }, 12 * 60 * 1000);
 let fails = 0;
 setInterval(() => {}, 1000); // keep the event loop alive while a WebSocket connects
 process.on("exit", c => console.log("exit code " + c));
 const ok = (c, m) => { console.log((c ? "PASS " : "FAIL ") + m); if (!c) fails++; };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
-const adb = (...a) => { try { return execFileSync("adb", a, { encoding: "utf8", maxBuffer: 1 << 26 }); } catch (e) { return ""; } };
+const adb = (...a) => { try { return execFileSync("adb", a, { encoding: "utf8", maxBuffer: 1 << 26, timeout: 60000 }); } catch (e) { return ""; } };
 const sh = c => adb("shell", c);
 const asApp = c => sh(`run-as ${PKG} ${c}`);
 fs.mkdirSync("shots", { recursive: true });
@@ -42,7 +43,8 @@ async function attach() {
   await until("typeof window.N==='object'&&document.readyState==='complete'", 60000);
 }
 const ev = expr => new Promise((res, rej) => {
-  const id = ++seq; pend.set(id, m => m.result && m.result.exceptionDetails ? rej(new Error(JSON.stringify(m.result.exceptionDetails.exception || m.result.exceptionDetails))) : res(m.result && m.result.result && m.result.result.value));
+  const id = ++seq; setTimeout(() => { if (pend.delete(id)) rej(new Error("evaluate timed out")); }, 15000);
+  pend.set(id, m => m.result && m.result.exceptionDetails ? rej(new Error(JSON.stringify(m.result.exceptionDetails.exception || m.result.exceptionDetails))) : res(m.result && m.result.result && m.result.result.value));
   ws.send(JSON.stringify({ id, method: "Runtime.evaluate", params: { expression: expr, awaitPromise: true, returnByValue: true } }));
 });
 async function until(expr, ms = 20000) {
