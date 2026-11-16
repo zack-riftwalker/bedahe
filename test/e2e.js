@@ -26,7 +26,7 @@ async function connect() {
   w.onmessage = e => {
     const m = JSON.parse(e.data);
     if (pend.has(m.id)) { pend.get(m.id)(m); pend.delete(m.id); }
-    else if (m.method === "Runtime.consoleAPICalled") console.log("PAGE console." + m.params.type + ": " + m.params.args.map(a => a.value || a.description).join(" ").slice(0, 300));
+    else if (m.method === "Runtime.consoleAPICalled" && /error|warning/.test(m.params.type)) console.log("PAGE console." + m.params.type + ": " + m.params.args.map(a => a.value || a.description).join(" ").slice(0, 300));
     else if (m.method === "Runtime.exceptionThrown") console.log("PAGE exception: " + JSON.stringify(m.params.exceptionDetails.exception || m.params.exceptionDetails.text).slice(0, 300));
   };
   ws = w;
