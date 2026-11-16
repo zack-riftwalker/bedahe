@@ -16,7 +16,22 @@ fs.mkdirSync("shots", { recursive: true });
 const shot = n => { try { fs.writeFileSync("shots/" + n + ".png", execFileSync("adb", ["exec-out", "screencap", "-p"], { maxBuffer: 1 << 26 })); } catch (e) {} };
 
 /* ---------- CDP ---------- */
-let ws, seq = 0; const pend = new Map();
+let ws = null, seq = 0, first = true; const pend = new Map();
+async function connect() {
+  const page = (await (await fetch("http://127.0.0.1:9222/json")).json()).find(t => t.type === "page");
+  if (!page) throw new Error("no devtools page");
+  const w = new WebSocket(page.webSocketDebuggerUrl);
+  await new Promise((r, j) => { w.onopen = r; w.onerror = () => j(new Error("ws error")); setTimeout(() => j(new Error("ws open timeout")), 8000); });
+  w.onclose = () => { if (ws === w) ws = null; };
+  w.onmessage = e => {
+    const m = JSON.parse(e.data);
+    if (pend.has(m.id)) { pend.get(m.id)(m); pend.delete(m.id); }
+    else if (m.method === "Runtime.consoleAPICalled") console.log("PAGE console." + m.params.type + ": " + m.params.args.map(a => a.value || a.description).join(" ").slice(0, 300));
+    else if (m.method === "Runtime.exceptionThrown") console.log("PAGE exception: " + JSON.stringify(m.params.exceptionDetails.exception || m.params.exceptionDetails.text).slice(0, 300));
+  };
+  ws = w;
+  if (first) { first = false; w.send(JSON.stringify({ id: ++seq, method: "Runtime.enable" })); }
+}
 async function attach() {
   console.log("attaching to WebView");
   let pid = "";
@@ -24,35 +39,16 @@ async function attach() {
   let sock = "";
   for (let i = 0; i < 60 && !sock; i++) { await sleep(1000); const m = sh("cat /proc/net/unix").match(/@(webview_devtools_remote_\d+)/); sock = m ? m[1] : ""; }
   adb("forward", "tcp:9222", "localabstract:" + sock);
-  let page;
-  for (let i = 0; i < 30 && !page; i++) {
-    try { page = (await (await fetch("http://127.0.0.1:9222/json")).json()).find(t => t.type === "page"); } catch (e) {}
-    if (!page) await sleep(1000);
-  }
-  console.log("devtools page:", page.url);
-  console.log("targets:", JSON.stringify(await (await fetch("http://127.0.0.1:9222/json")).json()).slice(0, 600));
-  console.log("version:", JSON.stringify(await (await fetch("http://127.0.0.1:9222/json/version")).json()).slice(0, 300));
-  ws = new WebSocket(page.webSocketDebuggerUrl);
-  let raw = 0;
-  ws.addEventListener("message", e => { if (raw++ < 12) console.log("RAW", String(e.data).slice(0, 200)); });
-  ws.addEventListener("close", e => console.log("WS closed", e.code, e.reason));
-  ws.addEventListener("error", () => console.log("WS error"));
-  await new Promise((r, j) => { ws.onopen = r; ws.onerror = j; });
-  ws.onmessage = e => {
-    const m = JSON.parse(e.data);
-    if (pend.has(m.id)) { pend.get(m.id)(m); pend.delete(m.id); }
-    else if (m.method === "Runtime.consoleAPICalled") console.log("PAGE console." + m.params.type + ": " + m.params.args.map(a => a.value || a.description).join(" "));
-    else if (m.method === "Runtime.exceptionThrown") console.log("PAGE exception: " + JSON.stringify(m.params.exceptionDetails.exception || m.params.exceptionDetails.text));
-  };
-  ws.send(JSON.stringify({ id: ++seq, method: "Runtime.enable" }));
-  console.log("probe:", await ev("JSON.stringify({rs:document.readyState,cap:typeof Capacitor,n:typeof N,url:location.href,body:document.body&&document.body.innerHTML.length})").catch(e => String(e)));
-  await until("typeof window.N==='object'&&document.readyState==='complete'", 60000);
+  ws = null; first = true;
+  await until("typeof window.N==='object'&&document.readyState==='complete'", 90000);
 }
-const ev = expr => new Promise((res, rej) => {
-  const id = ++seq; setTimeout(() => { if (pend.delete(id)) rej(new Error("evaluate timed out")); }, 15000);
+const rawEv = expr => new Promise((res, rej) => {
+  const id = ++seq; setTimeout(() => { if (pend.delete(id)) rej(new Error("evaluate timed out")); }, 8000);
   pend.set(id, m => m.result && m.result.exceptionDetails ? rej(new Error(JSON.stringify(m.result.exceptionDetails.exception || m.result.exceptionDetails))) : res(m.result && m.result.result && m.result.result.value));
-  ws.send(JSON.stringify({ id, method: "Runtime.evaluate", params: { expression: expr, awaitPromise: true, returnByValue: true } }));
+  // userGesture: lets audio.play() and similar run as if the user tapped
+  ws.send(JSON.stringify({ id, method: "Runtime.evaluate", params: { expression: expr, awaitPromise: true, returnByValue: true, userGesture: true } }));
 });
+const ev = async expr => { if (!ws || ws.readyState !== 1) await connect(); return rawEv(expr); }; // reconnects if the socket dropped
 async function until(expr, ms = 20000) {
   const t = Date.now();
   for (;;) { try { if (await ev(expr)) return true; } catch (e) {} if (Date.now() - t > ms) throw new Error("timeout: " + expr); await sleep(300); }
