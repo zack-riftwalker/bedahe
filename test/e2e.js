@@ -30,7 +30,13 @@ async function attach() {
     if (!page) await sleep(1000);
   }
   console.log("devtools page:", page.url);
+  console.log("targets:", JSON.stringify(await (await fetch("http://127.0.0.1:9222/json")).json()).slice(0, 600));
+  console.log("version:", JSON.stringify(await (await fetch("http://127.0.0.1:9222/json/version")).json()).slice(0, 300));
   ws = new WebSocket(page.webSocketDebuggerUrl);
+  let raw = 0;
+  ws.addEventListener("message", e => { if (raw++ < 12) console.log("RAW", String(e.data).slice(0, 200)); });
+  ws.addEventListener("close", e => console.log("WS closed", e.code, e.reason));
+  ws.addEventListener("error", () => console.log("WS error"));
   await new Promise((r, j) => { ws.onopen = r; ws.onerror = j; });
   ws.onmessage = e => {
     const m = JSON.parse(e.data);
